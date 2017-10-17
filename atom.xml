@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Orton Blog</title>
+  
+  <subtitle>Orton Blog</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://ortonzhang.com/"/>
+  <updated>2017-10-17T03:35:23.000Z</updated>
+  <id>http://ortonzhang.com/</id>
+  
+  <author>
+    <name>Orton Zhang</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用hexo、github搭建个人博客</title>
+    <link href="http://ortonzhang.com/2017/10/15/hexo-github-blog/"/>
+    <id>http://ortonzhang.com/2017/10/15/hexo-github-blog/</id>
+    <published>2017-10-14T16:03:38.000Z</published>
+    <updated>2017-10-17T03:35:23.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>使用hexo配合github page可以快速搭建一个属于自己的静态博客，号称5分钟就可以快速入手。<br><a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="external">Hexo</a> 是一个快速、简洁且高效的博客框架。</p><h2 id="hexo的安装"><a href="#hexo的安装" class="headerlink" title="hexo的安装"></a>hexo的安装</h2><p>输入以下命令全局安装hexo</p><blockquote><p>npm install -g hexo-cli</p></blockquote><a id="more"></a><p>输入 <code>hexo -v</code> 查看hexo是否安装成功 出现以下表示安装成功。</p><p><img src="http://upload-images.jianshu.io/upload_images/4060631-7de8a0c6246360ff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="hexo是否安装成功"></p><p>找到合适的地方，用来生成hexo的模版，以下是我的存放地址。</p><p><img src="http://upload-images.jianshu.io/upload_images/4060631-575fcfab0f57dad2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="hexo项目存放地址"></p><p>执行 <code>hexo init [name]</code> name是文件夹名称，可随便起，这里我取名blog。</p><p>执行中….</p><p>稍后片刻，此刻你可以去冲杯咖啡沏杯茶</p><p><img src="http://upload-images.jianshu.io/upload_images/4060631-e22558c5b2747896.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="执行完成"></p><p>出现 Start blogging with Hexo 字段表示初始化完成。</p><p>命令行中输入<code>cd blog</code> 进入到博客存放地址，接下来的命令，我们都需要在里面完成。</p><p><img src="http://upload-images.jianshu.io/upload_images/4060631-989dfaa1562a9484.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="博客存放地址"></p><p>接下来，我们用vs code将它打开（或者用其他的编辑器）。此时的目录结构图如下</p><p><img src="http://upload-images.jianshu.io/upload_images/4060631-0e8a84ee6a621aad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="目录结构"></p><p>命令行输入 <code>hexo s</code>(hexo server的简写) 用来启动服务</p><p>报错的话，可以尝试执行 <code>npm i</code> 手动下载依赖的包，然后再启动服务</p><p><img src="http://upload-images.jianshu.io/upload_images/4060631-f83cca320f727275.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="启动服务"></p><p>在浏览器中 输入localhost:4000 进行访问</p><p><img src="http://upload-images.jianshu.io/upload_images/4060631-901eea278aad9f58.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="hexo访问地址"></p><p>至此，我们本地博客就已经跑起来了，接下来，让我们修改下简单的配置。</p><h2 id="hexo-配置文件和常用命令"><a href="#hexo-配置文件和常用命令" class="headerlink" title="hexo 配置文件和常用命令"></a>hexo 配置文件和常用命令</h2><p>目录下<a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="external">_config.yml</a>是hexo的配置文件。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">hexo s 启动服务</div><div class="line">hexo clean 清空hexo的缓存</div><div class="line">hexo g 重新生成静态文件</div><div class="line">hexo d 发布到线上（请参考以下配置）</div><div class="line">hexo d -g 发布线上之前先重新生成文件</div></pre></td></tr></table></figure><h2 id="关联hexo和github-page"><a href="#关联hexo和github-page" class="headerlink" title="关联hexo和github page"></a>关联hexo和github page</h2><p>进入到我们的github，新建项目。</p><p><img src="http://upload-images.jianshu.io/upload_images/4060631-a66a85ac8a2346cb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="新建项目"></p><p>输入我们的项目名和项目描述。然后点击Create repository按钮，创建我们的代码库。</p><p><strong>项目名必须是自己的github名称.github.io 下图标红</strong> </p><p><img src="http://upload-images.jianshu.io/upload_images/4060631-7cc73478cffc26c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="项目名填写说明"></p><p>创建好以后，我们会自动进入到从项目中。此时页面如下</p><p><img src="http://upload-images.jianshu.io/upload_images/4060631-0ba243fde642518b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="项目界面"></p><p>把标红的git地址复制下，我们采用ssh的git地址，并不采用https。如果用https的话，会有一些预料不到的问题，我们这里不做深入研究。</p><p>回到我们的hexo项目中， 此时在编辑器中打开hexo的配置文件_config.yml，在文件最下面找到deploy字段，修改成以下样子。<br>type 方式采用git<br>repo 就是我们的github的项目地址<br>branch 就是我们的分支</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repo: https://github.com/MrzhangSs/MrzhangSs.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure><p>修改好后配置文件后，我们回到命令行中，执行 <code>npm i hexo-deployer-git -S</code> 安装git发布博客时候的依赖包，</p><p>此时我们就完成了与github的关联。</p><p>我们执行 <code>hexo d</code> 命令</p><h2 id="发布博客"><a href="#发布博客" class="headerlink" title="发布博客"></a>发布博客</h2><h2 id="hexo主题next的使用"><a href="#hexo主题next的使用" class="headerlink" title="hexo主题next的使用"></a>hexo主题next的使用</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;使用hexo配合github page可以快速搭建一个属于自己的静态博客，号称5分钟就可以快速入手。&lt;br&gt;&lt;a href=&quot;https://hexo.io/zh-cn/docs/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt; 是一个快速、简洁且高效的博客框架。&lt;/p&gt;
+&lt;h2 id=&quot;hexo的安装&quot;&gt;&lt;a href=&quot;#hexo的安装&quot; class=&quot;headerlink&quot; title=&quot;hexo的安装&quot;&gt;&lt;/a&gt;hexo的安装&lt;/h2&gt;&lt;p&gt;输入以下命令全局安装hexo&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;npm install -g hexo-cli&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="搭建博客" scheme="http://ortonzhang.com/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+      <category term="npm" scheme="http://ortonzhang.com/tags/npm/"/>
+    
+      <category term="hexo" scheme="http://ortonzhang.com/tags/hexo/"/>
+    
+      <category term="github" scheme="http://ortonzhang.com/tags/github/"/>
+    
+  </entry>
+  
+</feed>
