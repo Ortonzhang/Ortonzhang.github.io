@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://ortonzhang.com/"/>
-  <updated>2017-10-17T03:35:23.000Z</updated>
+  <updated>2017-10-21T12:50:10.000Z</updated>
   <id>http://ortonzhang.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>centos7下locate的使用</title>
+    <link href="http://ortonzhang.com/2017/10/21/centos7-locate/"/>
+    <id>http://ortonzhang.com/2017/10/21/centos7-locate/</id>
+    <published>2017-10-21T12:33:07.000Z</published>
+    <updated>2017-10-21T12:50:10.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>电脑上新装了linux虚拟机，centOS7版本的。玩起了linux，发现耍耍命令行的感觉还是蛮好的，比图形化工具要好，想深入了解下。</p><p>linux下查找文件的命令，常用的有<code>find</code>和<code>locate</code>，<code>locate</code>其实是<code>find -name</code>的另一种写法，但是它要比<code>find</code>快，因为它不搜索具体目录，而是在数据库中搜索。</p><a id="more"></a><p>执行 <code>updatedb</code>，用来生成数据库，发现找不到此命令。</p><p><img src="http://upload-images.jianshu.io/upload_images/4060631-b151954439b9db53.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p><p>原来centos7上没有安装locate,执行<code>yum -y install mlocate</code>，安装完成后，再次执行<code>updatedb</code></p><p><img src="http://upload-images.jianshu.io/upload_images/4060631-80f5fa33da5bc477.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p><p>运行<code>locate .zshrc</code>，查询结果如下</p><p><img src="http://upload-images.jianshu.io/upload_images/4060631-d6b43b6f02c60685.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p><p>此时，locate 就可以正确使用了。</p><h2 id="使用实例"><a href="#使用实例" class="headerlink" title="使用实例"></a>使用实例</h2><p>1、<code>locate /etc/m</code>     搜索etc下面m开头的文件<br>2、<code>locate -i /etc/m</code>  搜索etc下面m开头的文件忽略大小写</p><p><strong>注：  新建的文件和文件夹,直接执行<code>locate</code>进行查找，会查不到，我们需要执行<code>updatedb</code>后再进行查找</strong></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;电脑上新装了linux虚拟机，centOS7版本的。玩起了linux，发现耍耍命令行的感觉还是蛮好的，比图形化工具要好，想深入了解下。&lt;/p&gt;
+&lt;p&gt;linux下查找文件的命令，常用的有&lt;code&gt;find&lt;/code&gt;和&lt;code&gt;locate&lt;/code&gt;，&lt;code&gt;locate&lt;/code&gt;其实是&lt;code&gt;find -name&lt;/code&gt;的另一种写法，但是它要比&lt;code&gt;find&lt;/code&gt;快，因为它不搜索具体目录，而是在数据库中搜索。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="linux命令" scheme="http://ortonzhang.com/categories/linux%E5%91%BD%E4%BB%A4/"/>
+    
+    
+      <category term="linux" scheme="http://ortonzhang.com/tags/linux/"/>
+    
+  </entry>
   
   <entry>
     <title>使用hexo、github搭建个人博客</title>

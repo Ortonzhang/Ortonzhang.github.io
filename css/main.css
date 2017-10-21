@@ -1400,7 +1400,6 @@ pre .javascript .function {
   transition-timing-function: ease-in-out;
   transition-delay: 0s;
   transition-property: border;
-  border-bottom: 1px dashed #ccc;
 }
 .posts-collapse .post-header::before {
   content: " ";
@@ -1660,15 +1659,11 @@ pre .javascript .function {
   font-family: UKIJ Ekran;
 }
 .my_post_copyright {
-  width: 85%;
-  max-width: 45em;
-  margin: 2.8em auto 0;
+  margin: 2em 0 0;
   padding: 0.5em 1em;
-  border: 1px solid #d3d3d3;
-  font-size: 0.93rem;
-  line-height: 1.6em;
-  word-break: break-all;
-  background: rgba(255,255,255,0.4);
+  border-left: 3px solid #ff1700;
+  background-color: #f9f9f9;
+  list-style: none;
 }
 .my_post_copyright p {
   margin: 0;
@@ -1676,7 +1671,7 @@ pre .javascript .function {
 .my_post_copyright span {
   display: inline-block;
   width: 5.2em;
-  color: #b5b5b5;
+  color: #555;
   font-weight: bold;
 }
 .my_post_copyright .raw {
@@ -1874,7 +1869,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #de4a9f;
+  background: #87f2ff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3097,15 +3092,12 @@ pre .javascript .function {
 }
 .post-body h1 {
   font-size: 1.6em;
-  border-bottom: 1px solid #eee;
 }
 .post-body h2 {
   font-size: 1.45em;
-  border-bottom: 1px solid #eee;
 }
 .post-body h3 {
   font-size: 1.3em;
-  border-bottom: 1px dotted #eee;
 }
 .post-body h4 {
   font-size: 1.2em;
