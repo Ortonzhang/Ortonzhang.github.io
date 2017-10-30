@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://ortonzhang.com/"/>
-  <updated>2017-10-21T12:50:10.000Z</updated>
+  <updated>2017-10-30T08:31:12.000Z</updated>
   <id>http://ortonzhang.com/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>centos7安装oh-my-zsh</title>
+    <link href="http://ortonzhang.com/2017/10/22/centos-zsh/"/>
+    <id>http://ortonzhang.com/2017/10/22/centos-zsh/</id>
+    <published>2017-10-22T10:46:02.000Z</published>
+    <updated>2017-10-30T08:31:12.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>安装了虚拟机，玩了几天，发现自带的shell不太好用。本着折腾的优良作风，配置了oh-my-zsh，本文记录下安装步骤。</p><h2 id="查看当前shell"><a href="#查看当前shell" class="headerlink" title="查看当前shell"></a>查看当前shell</h2><p><code>echo $SHELL</code> </p><p>返回结果:</p><blockquote><p>bin/bash</p></blockquote><a id="more"></a><h2 id="安装zsh"><a href="#安装zsh" class="headerlink" title="安装zsh"></a>安装zsh</h2><p><code>yum install -y zsh</code></p><p>静候安装完成…</p><p>成功后如下所示</p><p><img src="http://upload-images.jianshu.io/upload_images/4060631-bafaee9efe30e563.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="zsh"></p><h2 id="设置默认shell"><a href="#设置默认shell" class="headerlink" title="设置默认shell"></a>设置默认shell</h2><p><code>chsh -s /bin/zsh</code></p><p><em>请在root用户下切换shell</em></p><p>返回结果如下，表示切换完成（配置完成后需要重启方能生效，我们先下载oh-my-zsh，稍后重启）</p><p><img src="http://upload-images.jianshu.io/upload_images/4060631-102e57784c72f94b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="更换shell"></p><h2 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h2><p>自动和手动安装都需要安装git，执行</p><p><code>yum install -y git</code></p><p>静候安装完成,完成后选择一种oh-my-zsh的安装方式。</p><h2 id="安装oh-my-zsh（自动）"><a href="#安装oh-my-zsh（自动）" class="headerlink" title="安装oh-my-zsh（自动）"></a>安装oh-my-zsh（自动）</h2><p><code>sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;</code></p><p>使用curl来安装，wget命令执行后不起作用，暂时不知道怎么回事。</p><p>出现以下界面，显示安装成功。</p><p><img src="http://upload-images.jianshu.io/upload_images/4060631-9f7f2d9e936c6b8f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="oh-my-zsh"></p><h2 id="手动安装"><a href="#手动安装" class="headerlink" title="手动安装"></a>手动安装</h2><p>下载源码</p><p><code>git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh</code></p><p>复制配置</p><p><code>cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc</code>  </p><h2 id="修改主题"><a href="#修改主题" class="headerlink" title="修改主题"></a>修改主题</h2><p>ZSH_THEME 字段就是主题，可以从资料里的主题找</p><p><img src="http://upload-images.jianshu.io/upload_images/4060631-f60d46280f29acd7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="主题配置"></p><h2 id="安装完成后，重启生效默认shell"><a href="#安装完成后，重启生效默认shell" class="headerlink" title="安装完成后，重启生效默认shell"></a>安装完成后，重启生效默认shell</h2><p><code>reboot</code></p><h2 id="别名配置"><a href="#别名配置" class="headerlink" title="别名配置"></a>别名配置</h2><p>首先我们看下git的别名</p><p><code>vi ~/.oh-my-zsh/plugins/git/git.plugin.zsh</code></p><p><img src="http://upload-images.jianshu.io/upload_images/4060631-efd95220e8fd2652.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="git别名"></p><p>很强大有木有，我们还可以自定义别名，在<code>~/.zshrc</code>中，最下面直接写即可。</p><p><img src="http://upload-images.jianshu.io/upload_images/4060631-48049d16410a428c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="自定义别名"></p><h2 id="小技巧"><a href="#小技巧" class="headerlink" title="小技巧"></a>小技巧</h2><p>1、输入<code>d</code>,就会列出你在这个回话中访问的目录，输入前面的序号，就可以直接跳转<br>2、可以忽略<code>cd</code>命令, 输入<code>..</code>或者<code>...</code>和当前目录名都可以跳转</p><h2 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h2><ul><li><a href="https://github.com/Ortonzhang/oh-my-zsh" target="_blank" rel="external">oh-my-zsh</a></li><li><a href="https://github.com/robbyrussell/oh-my-zsh/wiki/themes" target="_blank" rel="external">oh-my-zsh主题一览</a></li><li><a href="http://yijiebuyi.com/blog/b9b5e1ebb719f22475c38c4819ab8151.html" target="_blank" rel="external">oh-my-zsh配置你的zsh提高shell逼格终极选择</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;安装了虚拟机，玩了几天，发现自带的shell不太好用。本着折腾的优良作风，配置了oh-my-zsh，本文记录下安装步骤。&lt;/p&gt;
+&lt;h2 id=&quot;查看当前shell&quot;&gt;&lt;a href=&quot;#查看当前shell&quot; class=&quot;headerlink&quot; title=&quot;查看当前shell&quot;&gt;&lt;/a&gt;查看当前shell&lt;/h2&gt;&lt;p&gt;&lt;code&gt;echo $SHELL&lt;/code&gt; &lt;/p&gt;
+&lt;p&gt;返回结果:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;bin/bash&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="linux" scheme="http://ortonzhang.com/categories/linux/"/>
+    
+    
+      <category term="linux" scheme="http://ortonzhang.com/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
     <title>centos7下locate的使用</title>
     <link href="http://ortonzhang.com/2017/10/21/centos7-locate/"/>
     <id>http://ortonzhang.com/2017/10/21/centos7-locate/</id>
     <published>2017-10-21T12:33:07.000Z</published>
-    <updated>2017-10-21T12:50:10.000Z</updated>
+    <updated>2017-10-22T10:45:34.000Z</updated>
     
     <content type="html"><![CDATA[<p>电脑上新装了linux虚拟机，centOS7版本的。玩起了linux，发现耍耍命令行的感觉还是蛮好的，比图形化工具要好，想深入了解下。</p><p>linux下查找文件的命令，常用的有<code>find</code>和<code>locate</code>，<code>locate</code>其实是<code>find -name</code>的另一种写法，但是它要比<code>find</code>快，因为它不搜索具体目录，而是在数据库中搜索。</p><a id="more"></a><p>执行 <code>updatedb</code>，用来生成数据库，发现找不到此命令。</p><p><img src="http://upload-images.jianshu.io/upload_images/4060631-b151954439b9db53.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p><p>原来centos7上没有安装locate,执行<code>yum -y install mlocate</code>，安装完成后，再次执行<code>updatedb</code></p><p><img src="http://upload-images.jianshu.io/upload_images/4060631-80f5fa33da5bc477.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p><p>运行<code>locate .zshrc</code>，查询结果如下</p><p><img src="http://upload-images.jianshu.io/upload_images/4060631-d6b43b6f02c60685.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p><p>此时，locate 就可以正确使用了。</p><h2 id="使用实例"><a href="#使用实例" class="headerlink" title="使用实例"></a>使用实例</h2><p>1、<code>locate /etc/m</code>     搜索etc下面m开头的文件<br>2、<code>locate -i /etc/m</code>  搜索etc下面m开头的文件忽略大小写</p><p><strong>注：  新建的文件和文件夹,直接执行<code>locate</code>进行查找，会查不到，我们需要执行<code>updatedb</code>后再进行查找</strong></p>]]></content>
     
@@ -32,7 +59,7 @@
     
     </summary>
     
-      <category term="linux命令" scheme="http://ortonzhang.com/categories/linux%E5%91%BD%E4%BB%A4/"/>
+      <category term="linux" scheme="http://ortonzhang.com/categories/linux/"/>
     
     
       <category term="linux" scheme="http://ortonzhang.com/tags/linux/"/>
