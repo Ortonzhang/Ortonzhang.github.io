@@ -88,22 +88,25 @@
 
 
 
-<meta name="description" content="电脑上新装了linux虚拟机，centOS7版本的。玩起了linux，发现耍耍命令行的感觉还是蛮好的，比图形化工具要好，想深入了解下。 linux下查找文件的命令，常用的有find和locate，locate其实是find -name的另一种写法，但是它要比find快，因为它不搜索具体目录，而是在数据库中搜索。">
+<meta name="description" content="Nginx 是一个高性能的HTTP和反向代理服务器。文本详细记录了在centos7系统上安装的步骤。 安装依赖yum上面没有nginx的安装路径，可以使用切换yum的源进行安装，也可以下载源码进行编译安装，本文采用下载源码安装。">
 <meta name="keywords" content="linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="centos7下locate的使用">
-<meta property="og:url" content="http://ortonzhang.com/2017/10/21/centos7-locate/index.html">
+<meta property="og:title" content="centos7安装nginx">
+<meta property="og:url" content="http://ortonzhang.com/2017/11/25/nginx/index.html">
 <meta property="og:site_name" content="Orton Blog">
-<meta property="og:description" content="电脑上新装了linux虚拟机，centOS7版本的。玩起了linux，发现耍耍命令行的感觉还是蛮好的，比图形化工具要好，想深入了解下。 linux下查找文件的命令，常用的有find和locate，locate其实是find -name的另一种写法，但是它要比find快，因为它不搜索具体目录，而是在数据库中搜索。">
+<meta property="og:description" content="Nginx 是一个高性能的HTTP和反向代理服务器。文本详细记录了在centos7系统上安装的步骤。 安装依赖yum上面没有nginx的安装路径，可以使用切换yum的源进行安装，也可以下载源码进行编译安装，本文采用下载源码安装。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4060631-b151954439b9db53.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4060631-80f5fa33da5bc477.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4060631-d6b43b6f02c60685.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-11-24T16:24:40.000Z">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4060631-0278ccf991099d0d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4060631-5a7db8e1ac8a1dd0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4060631-e0019efb4e94164d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4060631-ea5632d07467be10.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4060631-37c08033b89ad323.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4060631-d0c185a477a31c95.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-11-24T16:27:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="centos7下locate的使用">
-<meta name="twitter:description" content="电脑上新装了linux虚拟机，centOS7版本的。玩起了linux，发现耍耍命令行的感觉还是蛮好的，比图形化工具要好，想深入了解下。 linux下查找文件的命令，常用的有find和locate，locate其实是find -name的另一种写法，但是它要比find快，因为它不搜索具体目录，而是在数据库中搜索。">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/4060631-b151954439b9db53.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="centos7安装nginx">
+<meta name="twitter:description" content="Nginx 是一个高性能的HTTP和反向代理服务器。文本详细记录了在centos7系统上安装的步骤。 安装依赖yum上面没有nginx的安装路径，可以使用切换yum的源进行安装，也可以下载源码进行编译安装，本文采用下载源码安装。">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/4060631-0278ccf991099d0d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -133,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="http://ortonzhang.com/2017/10/21/centos7-locate/"/>
+  <link rel="canonical" href="http://ortonzhang.com/2017/11/25/nginx/"/>
 
 
 
 
 
-  <title>centos7下locate的使用 | Orton Blog</title>
+  <title>centos7安装nginx | Orton Blog</title>
   
 
 
@@ -276,7 +279,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://ortonzhang.com/2017/10/21/centos7-locate/">
+    <link itemprop="mainEntityOfPage" href="http://ortonzhang.com/2017/11/25/nginx/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orton Zhang">
@@ -293,7 +296,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">centos7下locate的使用</h1>
+          <h1 class="post-title" itemprop="name headline">centos7安装nginx</h1>
         
 
         <div class="post-meta">
@@ -305,8 +308,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-21T20:33:07+08:00">
-                2017-10-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-25T00:18:07+08:00">
+                2017-11-25
               </time>
             
 
@@ -359,7 +362,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  236
+                  575
                 </span>
               
 
@@ -375,7 +378,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -396,18 +399,61 @@
       
 
       
-        <p>电脑上新装了linux虚拟机，centOS7版本的。玩起了linux，发现耍耍命令行的感觉还是蛮好的，比图形化工具要好，想深入了解下。</p>
-<p>linux下查找文件的命令，常用的有<code>find</code>和<code>locate</code>，<code>locate</code>其实是<code>find -name</code>的另一种写法，但是它要比<code>find</code>快，因为它不搜索具体目录，而是在数据库中搜索。</p>
-<a id="more"></a>
-<p>执行 <code>updatedb</code>，用来生成数据库，发现找不到此命令。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/4060631-b151954439b9db53.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<p>原来centos7上没有安装locate,执行<code>yum -y install mlocate</code>，安装完成后，再次执行<code>updatedb</code></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/4060631-80f5fa33da5bc477.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<p>运行<code>locate .zshrc</code>，查询结果如下</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/4060631-d6b43b6f02c60685.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<p>此时，locate 就可以正确使用了。</p>
-<h2 id="使用实例"><a href="#使用实例" class="headerlink" title="使用实例"></a>使用实例</h2><p>1、<code>locate /etc/m</code>     搜索etc下面m开头的文件<br>2、<code>locate -i /etc/m</code>  搜索etc下面m开头的文件忽略大小写</p>
-<p><strong>注：  新建的文件和文件夹,直接执行<code>locate</code>进行查找，会查不到，我们需要执行<code>updatedb</code>后再进行查找</strong></p>
+        <p><em>Nginx</em> 是一个高性能的HTTP和反向代理服务器。文本详细记录了在centos7系统上安装的步骤。</p>
+<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><p>yum上面没有nginx的安装路径，可以使用切换yum的源进行安装，也可以下载源码进行编译安装，本文采用下载源码安装。<br><a id="more"></a><br><strong>注：安装用户均为root</strong></p>
+<p>1、由于安装编译源码，需要<code>gcc</code>环境没有的话请执行以下代码，如果有的话请从第2步开始安装</p>
+<blockquote>
+<p>yum -y install gcc-c++</p>
+</blockquote>
+<p>环境较大，网络慢的话需要等几分钟，出现以下图，表示安装成功。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4060631-0278ccf991099d0d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>2、安装<code>pcre pcre-devel</code> 执行，出现complete字段表示安装成功</p>
+<blockquote>
+<p>yum -y install pcre pcre-devel</p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/4060631-5a7db8e1ac8a1dd0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>3、安装<code>zlib zlib-devel</code> 执行以下命令 静候片刻</p>
+<blockquote>
+<p>yum -y install zlib zlib-devel</p>
+</blockquote>
+<p>4、安装<code>openssl openssl-devel</code> 执行后 静候安装成功</p>
+<blockquote>
+<p>yum -y install openssl openssl-devel</p>
+</blockquote>
+<p>以上步骤完成后，接下来就可以安装nginx了</p>
+<h2 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h2><p>从<a href="http://nginx.org/download/" target="_blank" rel="external">官网</a>安装.tar.gz包，推荐使用wget命令进行下载，如果还没有安装wget，执行<code>yum -y install wget</code>进行安装，本文安装的是1.8版本，也可选择其他版本。</p>
+<p>1、下载源码，执行</p>
+<blockquote>
+<p>wget -c <a href="http://nginx.org/download/nginx-1.8.0.tar.gz" target="_blank" rel="external">http://nginx.org/download/nginx-1.8.0.tar.gz</a></p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/4060631-e0019efb4e94164d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>2、下载完成后，执行解压命令</p>
+<blockquote>
+<p>tar -zxvf nginx-1.8.0.tar.gz</p>
+</blockquote>
+<p>3、配置nginx<br>执行<code>cd nginx-1.8.0</code> 进入解压后的nginx文件 执行</p>
+<blockquote>
+<p>./configure –prefix=/usr/local/nginx<br>这里将nginx配置文件放在<code>/usr/local/nginx</code>路径下，也可以使用默认配置，<br>使用默认配置执行<code>./configure</code>即可</p>
+</blockquote>
+<p>4、编译安装 执行</p>
+<blockquote>
+<p>make<br>make install<br>5、查看nginx所在位置，本文将配置指向了<code>/usr/local/nginx</code>目录</p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/4060631-ea5632d07467be10.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>6、启动nginx<br>在sbin目录下 执行<code>./nginx</code> </p>
+<p><strong>注：启动成功后，如果在浏览器无法访问将防火墙关闭</strong><br>查看防火墙状态</p>
+<blockquote>
+<p>firewall-cmd –state<br><img src="http://upload-images.jianshu.io/upload_images/4060631-37c08033b89ad323.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+</blockquote>
+<p>running表示开启状态中执行以下命令</p>
+<blockquote>
+<p>systemctl stop firewalld.service     # 停止firewall<br>systemctl disable firewalld.service #禁止firewall开机启动</p>
+</blockquote>
+<p>将防火墙关闭后，刷新页面，显示</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4060631-d0c185a477a31c95.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>至此，nginx安装完成</p>
+<h2 id="nginx命令"><a href="#nginx命令" class="headerlink" title="nginx命令"></a>nginx命令</h2><p>启动 <code>./nginx</code><br>重启 <code>./nginx -s reload</code><br>关闭 <code>./nginx –s stop</code><br>查看配置是否正确 <code>./nginx –t</code></p>
+<p>以上命令均在nginx文件下sbin目录中执行</p>
 
       
     </div>
@@ -425,7 +471,7 @@
   <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
   <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
   <p><span>本文作者:</span><a href="/" title="访问 Orton Zhang 的个人博客">Orton Zhang</a></p>
-  <p><span>本文链接:</span><a href="/2017/10/21/centos7-locate/" title="centos7下locate的使用">http://ortonzhang.com/2017/10/21/centos7-locate/</a>
+  <p><span>本文链接:</span><a href="/2017/11/25/nginx/" title="centos7安装nginx">http://ortonzhang.com/2017/11/25/nginx/</a>
   </p>
   <p><span>版权声明:</span>本博客所有文章除特别声明外，均采用<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" title="CC BY-NC-SA 3.0 CN">CC BY-NC-SA 3.0 CN</a> 许可协议。转载请注明出处！</p>  
 </div>
@@ -456,8 +502,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/15/hexo-github-blog/" rel="next" title="使用hexo、github搭建个人博客">
-                <i class="fa fa-chevron-left"></i> 使用hexo、github搭建个人博客
+              <a href="/2017/10/22/centos-zsh/" rel="next" title="centos7安装oh-my-zsh">
+                <i class="fa fa-chevron-left"></i> centos7安装oh-my-zsh
               </a>
             
           </div>
@@ -465,10 +511,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/22/centos-zsh/" rel="prev" title="centos7安装oh-my-zsh">
-                centos7安装oh-my-zsh <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -627,7 +669,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用实例"><span class="nav-number">1.</span> <span class="nav-text">使用实例</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装依赖"><span class="nav-number">1.</span> <span class="nav-text">安装依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装nginx"><span class="nav-number">2.</span> <span class="nav-text">安装nginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nginx命令"><span class="nav-number">3.</span> <span class="nav-text">nginx命令</span></a></li></ol></div>
             
 
           </div>

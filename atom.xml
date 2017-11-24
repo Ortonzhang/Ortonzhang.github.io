@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://ortonzhang.com/"/>
-  <updated>2017-10-30T08:31:12.000Z</updated>
+  <updated>2017-11-24T16:27:12.000Z</updated>
   <id>http://ortonzhang.com/</id>
   
   <author>
@@ -17,11 +17,34 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>centos7安装nginx</title>
+    <link href="http://ortonzhang.com/2017/11/25/nginx/"/>
+    <id>http://ortonzhang.com/2017/11/25/nginx/</id>
+    <published>2017-11-24T16:18:07.000Z</published>
+    <updated>2017-11-24T16:27:12.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><em>Nginx</em> 是一个高性能的HTTP和反向代理服务器。文本详细记录了在centos7系统上安装的步骤。</p><h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><p>yum上面没有nginx的安装路径，可以使用切换yum的源进行安装，也可以下载源码进行编译安装，本文采用下载源码安装。<br><a id="more"></a><br><strong>注：安装用户均为root</strong></p><p>1、由于安装编译源码，需要<code>gcc</code>环境没有的话请执行以下代码，如果有的话请从第2步开始安装</p><blockquote><p>yum -y install gcc-c++</p></blockquote><p>环境较大，网络慢的话需要等几分钟，出现以下图，表示安装成功。</p><p><img src="http://upload-images.jianshu.io/upload_images/4060631-0278ccf991099d0d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p><p>2、安装<code>pcre pcre-devel</code> 执行，出现complete字段表示安装成功</p><blockquote><p>yum -y install pcre pcre-devel</p></blockquote><p><img src="http://upload-images.jianshu.io/upload_images/4060631-5a7db8e1ac8a1dd0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p><p>3、安装<code>zlib zlib-devel</code> 执行以下命令 静候片刻</p><blockquote><p>yum -y install zlib zlib-devel</p></blockquote><p>4、安装<code>openssl openssl-devel</code> 执行后 静候安装成功</p><blockquote><p>yum -y install openssl openssl-devel</p></blockquote><p>以上步骤完成后，接下来就可以安装nginx了</p><h2 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h2><p>从<a href="http://nginx.org/download/" target="_blank" rel="external">官网</a>安装.tar.gz包，推荐使用wget命令进行下载，如果还没有安装wget，执行<code>yum -y install wget</code>进行安装，本文安装的是1.8版本，也可选择其他版本。</p><p>1、下载源码，执行</p><blockquote><p>wget -c <a href="http://nginx.org/download/nginx-1.8.0.tar.gz" target="_blank" rel="external">http://nginx.org/download/nginx-1.8.0.tar.gz</a></p></blockquote><p><img src="http://upload-images.jianshu.io/upload_images/4060631-e0019efb4e94164d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p><p>2、下载完成后，执行解压命令</p><blockquote><p>tar -zxvf nginx-1.8.0.tar.gz</p></blockquote><p>3、配置nginx<br>执行<code>cd nginx-1.8.0</code> 进入解压后的nginx文件 执行</p><blockquote><p>./configure –prefix=/usr/local/nginx<br>这里将nginx配置文件放在<code>/usr/local/nginx</code>路径下，也可以使用默认配置，<br>使用默认配置执行<code>./configure</code>即可</p></blockquote><p>4、编译安装 执行</p><blockquote><p>make<br>make install<br>5、查看nginx所在位置，本文将配置指向了<code>/usr/local/nginx</code>目录</p></blockquote><p><img src="http://upload-images.jianshu.io/upload_images/4060631-ea5632d07467be10.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p><p>6、启动nginx<br>在sbin目录下 执行<code>./nginx</code> </p><p><strong>注：启动成功后，如果在浏览器无法访问将防火墙关闭</strong><br>查看防火墙状态</p><blockquote><p>firewall-cmd –state<br><img src="http://upload-images.jianshu.io/upload_images/4060631-37c08033b89ad323.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p></blockquote><p>running表示开启状态中执行以下命令</p><blockquote><p>systemctl stop firewalld.service     # 停止firewall<br>systemctl disable firewalld.service #禁止firewall开机启动</p></blockquote><p>将防火墙关闭后，刷新页面，显示</p><p><img src="http://upload-images.jianshu.io/upload_images/4060631-d0c185a477a31c95.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p><p>至此，nginx安装完成</p><h2 id="nginx命令"><a href="#nginx命令" class="headerlink" title="nginx命令"></a>nginx命令</h2><p>启动 <code>./nginx</code><br>重启 <code>./nginx -s reload</code><br>关闭 <code>./nginx –s stop</code><br>查看配置是否正确 <code>./nginx –t</code></p><p>以上命令均在nginx文件下sbin目录中执行</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;em&gt;Nginx&lt;/em&gt; 是一个高性能的HTTP和反向代理服务器。文本详细记录了在centos7系统上安装的步骤。&lt;/p&gt;
+&lt;h2 id=&quot;安装依赖&quot;&gt;&lt;a href=&quot;#安装依赖&quot; class=&quot;headerlink&quot; title=&quot;安装依赖&quot;&gt;&lt;/a&gt;安装依赖&lt;/h2&gt;&lt;p&gt;yum上面没有nginx的安装路径，可以使用切换yum的源进行安装，也可以下载源码进行编译安装，本文采用下载源码安装。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="linux" scheme="http://ortonzhang.com/categories/linux/"/>
+    
+    
+      <category term="linux" scheme="http://ortonzhang.com/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
     <title>centos7安装oh-my-zsh</title>
     <link href="http://ortonzhang.com/2017/10/22/centos-zsh/"/>
     <id>http://ortonzhang.com/2017/10/22/centos-zsh/</id>
     <published>2017-10-22T10:46:02.000Z</published>
-    <updated>2017-10-30T08:31:12.000Z</updated>
+    <updated>2017-11-24T16:24:44.000Z</updated>
     
     <content type="html"><![CDATA[<p>安装了虚拟机，玩了几天，发现自带的shell不太好用。本着折腾的优良作风，配置了oh-my-zsh，本文记录下安装步骤。</p><h2 id="查看当前shell"><a href="#查看当前shell" class="headerlink" title="查看当前shell"></a>查看当前shell</h2><p><code>echo $SHELL</code> </p><p>返回结果:</p><blockquote><p>bin/bash</p></blockquote><a id="more"></a><h2 id="安装zsh"><a href="#安装zsh" class="headerlink" title="安装zsh"></a>安装zsh</h2><p><code>yum install -y zsh</code></p><p>静候安装完成…</p><p>成功后如下所示</p><p><img src="http://upload-images.jianshu.io/upload_images/4060631-bafaee9efe30e563.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="zsh"></p><h2 id="设置默认shell"><a href="#设置默认shell" class="headerlink" title="设置默认shell"></a>设置默认shell</h2><p><code>chsh -s /bin/zsh</code></p><p><em>请在root用户下切换shell</em></p><p>返回结果如下，表示切换完成（配置完成后需要重启方能生效，我们先下载oh-my-zsh，稍后重启）</p><p><img src="http://upload-images.jianshu.io/upload_images/4060631-102e57784c72f94b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="更换shell"></p><h2 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h2><p>自动和手动安装都需要安装git，执行</p><p><code>yum install -y git</code></p><p>静候安装完成,完成后选择一种oh-my-zsh的安装方式。</p><h2 id="安装oh-my-zsh（自动）"><a href="#安装oh-my-zsh（自动）" class="headerlink" title="安装oh-my-zsh（自动）"></a>安装oh-my-zsh（自动）</h2><p><code>sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;</code></p><p>使用curl来安装，wget命令执行后不起作用，暂时不知道怎么回事。</p><p>出现以下界面，显示安装成功。</p><p><img src="http://upload-images.jianshu.io/upload_images/4060631-9f7f2d9e936c6b8f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="oh-my-zsh"></p><h2 id="手动安装"><a href="#手动安装" class="headerlink" title="手动安装"></a>手动安装</h2><p>下载源码</p><p><code>git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh</code></p><p>复制配置</p><p><code>cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc</code>  </p><h2 id="修改主题"><a href="#修改主题" class="headerlink" title="修改主题"></a>修改主题</h2><p>ZSH_THEME 字段就是主题，可以从资料里的主题找</p><p><img src="http://upload-images.jianshu.io/upload_images/4060631-f60d46280f29acd7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="主题配置"></p><h2 id="安装完成后，重启生效默认shell"><a href="#安装完成后，重启生效默认shell" class="headerlink" title="安装完成后，重启生效默认shell"></a>安装完成后，重启生效默认shell</h2><p><code>reboot</code></p><h2 id="别名配置"><a href="#别名配置" class="headerlink" title="别名配置"></a>别名配置</h2><p>首先我们看下git的别名</p><p><code>vi ~/.oh-my-zsh/plugins/git/git.plugin.zsh</code></p><p><img src="http://upload-images.jianshu.io/upload_images/4060631-efd95220e8fd2652.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="git别名"></p><p>很强大有木有，我们还可以自定义别名，在<code>~/.zshrc</code>中，最下面直接写即可。</p><p><img src="http://upload-images.jianshu.io/upload_images/4060631-48049d16410a428c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="自定义别名"></p><h2 id="小技巧"><a href="#小技巧" class="headerlink" title="小技巧"></a>小技巧</h2><p>1、输入<code>d</code>,就会列出你在这个回话中访问的目录，输入前面的序号，就可以直接跳转<br>2、可以忽略<code>cd</code>命令, 输入<code>..</code>或者<code>...</code>和当前目录名都可以跳转</p><h2 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h2><ul><li><a href="https://github.com/Ortonzhang/oh-my-zsh" target="_blank" rel="external">oh-my-zsh</a></li><li><a href="https://github.com/robbyrussell/oh-my-zsh/wiki/themes" target="_blank" rel="external">oh-my-zsh主题一览</a></li><li><a href="http://yijiebuyi.com/blog/b9b5e1ebb719f22475c38c4819ab8151.html" target="_blank" rel="external">oh-my-zsh配置你的zsh提高shell逼格终极选择</a></li></ul>]]></content>
     
@@ -48,7 +71,7 @@
     <link href="http://ortonzhang.com/2017/10/21/centos7-locate/"/>
     <id>http://ortonzhang.com/2017/10/21/centos7-locate/</id>
     <published>2017-10-21T12:33:07.000Z</published>
-    <updated>2017-10-22T10:45:34.000Z</updated>
+    <updated>2017-11-24T16:24:40.000Z</updated>
     
     <content type="html"><![CDATA[<p>电脑上新装了linux虚拟机，centOS7版本的。玩起了linux，发现耍耍命令行的感觉还是蛮好的，比图形化工具要好，想深入了解下。</p><p>linux下查找文件的命令，常用的有<code>find</code>和<code>locate</code>，<code>locate</code>其实是<code>find -name</code>的另一种写法，但是它要比<code>find</code>快，因为它不搜索具体目录，而是在数据库中搜索。</p><a id="more"></a><p>执行 <code>updatedb</code>，用来生成数据库，发现找不到此命令。</p><p><img src="http://upload-images.jianshu.io/upload_images/4060631-b151954439b9db53.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p><p>原来centos7上没有安装locate,执行<code>yum -y install mlocate</code>，安装完成后，再次执行<code>updatedb</code></p><p><img src="http://upload-images.jianshu.io/upload_images/4060631-80f5fa33da5bc477.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p><p>运行<code>locate .zshrc</code>，查询结果如下</p><p><img src="http://upload-images.jianshu.io/upload_images/4060631-d6b43b6f02c60685.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p><p>此时，locate 就可以正确使用了。</p><h2 id="使用实例"><a href="#使用实例" class="headerlink" title="使用实例"></a>使用实例</h2><p>1、<code>locate /etc/m</code>     搜索etc下面m开头的文件<br>2、<code>locate -i /etc/m</code>  搜索etc下面m开头的文件忽略大小写</p><p><strong>注：  新建的文件和文件夹,直接执行<code>locate</code>进行查找，会查不到，我们需要执行<code>updatedb</code>后再进行查找</strong></p>]]></content>
     
