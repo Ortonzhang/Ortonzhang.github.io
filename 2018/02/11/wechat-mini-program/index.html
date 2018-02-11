@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="js,小程序," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Orton Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="概念小程序是一种不需要下载安装即可使用的应用，它实现了应用“触手可及”的梦想，用户扫一扫或者搜一下即可打开应用。 可以理解成一套嵌套在微信里面的app，和原生app不同的是不需要下载，属于小而轻的应用。">
+<meta name="keywords" content="js,小程序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初探微信小程序">
+<meta property="og:url" content="http://ortonzhang.com/2018/02/11/wechat-mini-program/index.html">
+<meta property="og:site_name" content="Orton Blog">
+<meta property="og:description" content="概念小程序是一种不需要下载安装即可使用的应用，它实现了应用“触手可及”的梦想，用户扫一扫或者搜一下即可打开应用。 可以理解成一套嵌套在微信里面的app，和原生app不同的是不需要下载，属于小而轻的应用。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4060631-f91df8636bda8c0d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4060631-8f5619b0aba9a7f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4060631-a0eba062d8c9bf97.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4060631-decf1333db73317f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4060631-c76a67aa68be8e12.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4060631-884a69ff512bf5f3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4060631-f8089c9e02c44db7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4060631-945b3da10ec2ae99.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4060631-36adb89f1ccdf298.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-02-11T15:26:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初探微信小程序">
+<meta name="twitter:description" content="概念小程序是一种不需要下载安装即可使用的应用，它实现了应用“触手可及”的梦想，用户扫一扫或者搜一下即可打开应用。 可以理解成一套嵌套在微信里面的app，和原生app不同的是不需要下载，属于小而轻的应用。">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/4060631-f91df8636bda8c0d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://ortonzhang.com/2018/02/11/wechat-mini-program/"/>
+
+
+
+
+
+  <title>初探微信小程序 | Orton Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/Ortonzhang"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Orton Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Orton Blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://ortonzhang.com/2018/02/11/wechat-mini-program/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orton Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orton Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">初探微信小程序</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-11T23:23:42+08:00">
+                2018-02-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/小程序/" itemprop="url" rel="index">
+                    <span itemprop="name">小程序</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,747
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>小程序是一种不需要下载安装即可使用的应用，它实现了应用“触手可及”的梦想，用户扫一扫或者搜一下即可打开应用。</p>
+<p>可以理解成一套嵌套在微信里面的app，和原生app不同的是不需要下载，属于小而轻的应用。</p>
+<a id="more"></a>
+<h2 id="开发前的准备"><a href="#开发前的准备" class="headerlink" title="开发前的准备"></a>开发前的准备</h2><p>1、<a href="https://mp.weixin.qq.com/debug/wxadoc/introduction/index.html?t=20171117" target="_blank" rel="external">注册账号</a><br>2、<a href="https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html?t=201822" target="_blank" rel="external">下载开发者工具</a>, 下载<code>1.02.1801081</code>这个版本的，最新版的有bug，编译的时候调试器<code>Wxml</code>窗口会出现空的<code>page</code>标签，里面没有内容。编辑器内复制也会偶尔失效。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4060631-f91df8636bda8c0d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="下载版本"></p>
+<p>3、注册好后登录下<a href="https://mp.weixin.qq.com/" target="_blank" rel="external">微信公众平台</a>，在设置里找到开发设置，把appID保存下来，一会开发的时候需要用到<br><img src="http://upload-images.jianshu.io/upload_images/4060631-8f5619b0aba9a7f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="appID"></p>
+<h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><p>1、此时，工具有了，ID有了，接下来开始我们的撸码之旅。打开开发者工具，扫码登录后选择小程序项目，点击右下角的加号，创建新项目，选择项目目录，填写appID，项目名称，写好后点击确定。<br><img src="http://upload-images.jianshu.io/upload_images/4060631-a0eba062d8c9bf97.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="小程序管理"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4060631-decf1333db73317f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="填写信息"></p>
+<p>2、确定以后，默认打开后，发现给我们创建了一些代码，代码一会我们再讲。<br><img src="http://upload-images.jianshu.io/upload_images/4060631-c76a67aa68be8e12.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="目录.png"></p>
+<p>页面是空白的，打开调试器后发现页面有报错，如下</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4060631-884a69ff512bf5f3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>点击右上角的详情，修改下配置，把调试基础库改成1.9.1，然后把<code>不校验安全域名、web-view 域名、TLS 版本以及 HTTPS 证书</code>勾选上，不然我们的请求就必须得是<code>https</code>的了</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4060631-f8089c9e02c44db7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="修改配置"></p>
+<p>3、此时控制台没有报错了，页面展示如下，点击按钮，我们可以看到微信授权，点击允许，我们的头像和昵称就显示在页面上了</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4060631-945b3da10ec2ae99.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="页面展示.png"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4060631-36adb89f1ccdf298.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="用户信息展示"></p>
+<h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><p>我们主要看<code>app.js</code>、<code>app.json</code>、<code>app.wxss</code>三个文件和<code>pages</code>文件夹里面的<code>wxml</code></p>
+<p>1、<code>app.js</code>做为小程序的入口，里面有个App实例，每个小程序只会有一个App实例，小程序启动以后触发onLaunch函数执行，获取用户信息</p>
+<p>2、<code>app.json</code>是小程序的所有全局配置，<code>pages</code>字段放置所有页面的路径，<code>window</code>字段定义所有页面的顶部背景颜色，文字颜色 详细配置请<a href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/config.html" target="_blank" rel="external">戳这里👇</a></p>
+<p>3、<code>app.wxss</code>文件就是页面公用的样式，仅支持部分css选择器</p>
+<p>4、<code>wxml</code>就是我们的HTML文件，常用标签为 <code>view</code> 、<code>text</code> 等，没有所谓的<code>div</code>、<code>span</code>、<code>p</code>一类的标签了，我们习惯称它们为组件</p>
+<h2 id="设计理念"><a href="#设计理念" class="headerlink" title="设计理念"></a>设计理念</h2><p>小程序内部可以理解成一个mvvm的框架，分为逻辑层和视图层，逻辑层将数据进行处理后发送给视图层，同时接受视图层的事件反馈。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// pages/test/index.js</span></div><div class="line">Page(&#123;</div><div class="line">  data:&#123;  <span class="comment">// 页面的初始数据</span></div><div class="line">      text: <span class="string">'hello world'</span></div><div class="line">  &#125;,</div><div class="line">  onLoad()&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'hello'</span>)</div><div class="line">  &#125;,</div><div class="line">  change()&#123;</div><div class="line">    <span class="keyword">this</span>.setData(&#123;</div><div class="line">    text:<span class="string">'hello'</span></div><div class="line">  &#125;)</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>使用<code>Page</code>函数来注册一个页面，接收一个Object参数。<br>这里我们使用了<code>onLoad</code>来监听页面的加载和定义了一个change函数<br>并使用setData函数将text的值进行更改</p>
+<p><strong>更改data数据的时候必须调用setData函数进行更改</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">// pages/test/index.wxml</div><div class="line"><span class="tag">&lt;<span class="name">view</span>&gt;</span>&#123;&#123;text&#125;&#125;<span class="tag">&lt;/<span class="name">view</span>&gt;</span> //  显示hello world</div><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">bindtap</span>=<span class="string">"change"</span>&gt;</span>点击更改上面文字<span class="tag">&lt;/<span class="name">button</span>&gt;</span> //  显示hello</div></pre></td></tr></table></figure>
+<p>我们在button组件上添加了点击事件，调用了change函数，完整事件请<a href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/view/wxml/event.html" target="_blank" rel="external">戳👇这里</a></p>
+<h3 id="事件传递参数"><a href="#事件传递参数" class="headerlink" title="事件传递参数"></a>事件传递参数</h3><p>有时候我们需要触发事件的时候，传递一些参数，那小程序怎么传递呢？很不幸，小程序不能类似js里面直接传递，往往我们需要将传递的数据绑定到事件元素上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// index.wxml</div><div class="line">&lt;button data-test=&quot;哈哈&quot;  bindtap=&quot;change&quot;&gt;点击我&lt;/button&gt;</div></pre></td></tr></table></figure>
+<p>使用<code>e.currentTarget.dataset</code>来获取值<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// index.js</span></div><div class="line">change(e)&#123;</div><div class="line">  e.currentTarget.dataset.test  <span class="comment">// 哈哈</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="setData函数拓展"><a href="#setData函数拓展" class="headerlink" title="setData函数拓展"></a>setData函数拓展</h3><p>1、修改嵌套多层的数据，<br>如果是写死的参数可以使用引号将参数包起来<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">this.setData(&#123;</div><div class="line">    &apos;text.msg&apos;: &apos;hello&apos;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>如果是传递进来的值呢？很简单将data的key用<code>[]</code>括起来<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// index.wxml</div><div class="line">&lt;button bindtap=&quot;change&quot; data-key=&quot;text.msg&quot;&gt;点击我&lt;/button&gt;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// index.js</div><div class="line">change(e)&#123;</div><div class="line">var key = e.currentTarget.dataset.key</div><div class="line">  this.setData(&#123;</div><div class="line">    key: &apos;hello&apos;     // 数据不会更改</div><div class="line">  //  [key]: &apos;hello&apos; //  数据会更改</div><div class="line">  &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h2><p>小程序里面所有的页面路由由框架进行管理</p>
+<p>我们可以使用<code>getCurrnetPages</code>函数获取当前页面栈的实例，返回一个数组, 最后一个元素为当前页面</p>
+<p>小程序定义了五个用于导航跳转的API，这里列举两个常用的，详细请<a href="https://mp.weixin.qq.com/debug/wxadoc/dev/api/ui-navigate.html#wxnavigatetoobject" target="_blank" rel="external">戳👇这里</a></p>
+<p>1、<code>wx.navigateTo</code> 保留当前页面，跳转到应用内的某个页面，使用<code>wx.navigateBack</code>可以返回到原页面<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wx.navigateTo(&#123;url:`/pages/text/index?text=$&#123;121212&#125;`&#125;)</div></pre></td></tr></table></figure></p>
+<p>2、<code>wx.redirectTo</code> 关闭当前页面，跳转到应用内的某个页面<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wx.navigateTo(&#123;url:`/pages/text/index?text=$&#123;121212&#125;`&#125;)</div></pre></td></tr></table></figure></p>
+<p>通过上面的API跳转带的参数，在页面上我们需要怎么获取呢？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">// text.js</div><div class="line">Page(&#123;</div><div class="line">  data:&#123;</div><div class="line">     ... // 页面数据</div><div class="line">  &#125;,</div><div class="line">  onLoad(options)&#123;</div><div class="line">    console.log(options.text)  // 121212 获取上个页面带过来的值</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h3 id="数据过滤-过滤器"><a href="#数据过滤-过滤器" class="headerlink" title="数据过滤 过滤器"></a>数据过滤 过滤器</h3><p>如果你使用过<code>vue</code>、<code>angular</code>框架，对<code>|</code>管道符肯定不陌生，它用来对我们的数据进行转换，那小程序里面有没有过滤器呢，不过这个是真没有。</p>
+<p>但是目前有两种方法，可以实现过滤。</p>
+<p>1、获取数据的时候，直接改了，干脆利落、好不优雅。<br>2、使用最后我们要介绍的wxs</p>
+<h3 id="WXS"><a href="#WXS" class="headerlink" title="WXS"></a>WXS</h3><p>WXS是小程序的一套脚本语言，首先和js是不同的语言，其次运行环境和js也是隔离开的，wxs不能调用js文件中的函数，也不能调用小程序的API，它主要用来增强wxml。</p>
+<p><strong>wxs不能使用es6语法，人家不是js啦😷</strong></p>
+<p>接下来我们来实现一个使用wxs实现一个简单的过滤器<br>1、首先我们创建<code>filter.wxs</code>文件并写入以下内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">// filter.wxs</div><div class="line">var Filter = &#123;</div><div class="line">  getSatusStr: function(num)&#123;</div><div class="line">    var str = &apos;&apos;;</div><div class="line">    switch (num) &#123;</div><div class="line">      case 0:</div><div class="line">        string = &apos;我是0的状态&apos;</div><div class="line">        break;</div><div class="line">      case 1:</div><div class="line">        string = &apos;我是1的状态&apos;</div><div class="line">        break;</div><div class="line">      default:</div><div class="line">        string = &apos;我是默认的状态&apos;</div><div class="line">        break;</div><div class="line">    &#125;</div><div class="line">    return str</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">module.exports = &#123;</div><div class="line">  status: Filter.getSatusStr</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>同级下index.wxml使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;wxs module=&quot;filter&quot; src=&quot;./filter.wxs&quot;&gt;&lt;/wxs&gt; </div><div class="line">&lt;view wx:for=&quot;&#123;&#123;list&#125;&#125;&quot;&gt;</div><div class="line">  &lt;view&gt;&#123;&#123;filter.status(item.status)&#125;&#125;&lt;/view&gt;  </div><div class="line">&lt;/view&gt;</div></pre></td></tr></table></figure></p>
+<p>总结：<br>1、每个<code>wxs</code>标签都有一个module 属性<br>1、<code>wxs</code>可以写在<code>wxml</code>里面的wxs标签里和<code>.wxs</code>文件里<br>2、<code>wxs</code>文件中引入其他<code>wxs</code>文件时候，可以使用require函数，接受相对路径<br>3、在<code>wxml</code>标签里使用外部<code>wxs</code>文件的时候，src属性是相对路径</p>
+<h2 id="tip"><a href="#tip" class="headerlink" title="tip"></a>tip</h2><p>1、使用sass写<code>wxss</code>文件，在目录下创建<code>index.scss</code>文件，当前目录下执行 <code>sass --watch index.scss:index.wxss --style expanded</code></p>
+<p>2、<code>wcss</code> 文件里面不能使用本地图片，请使用base64、网上图片或者<code>image</code></p>
+<p>3、修改页面的背景，类似与css中设置body，可以直接设置page</p>
+<p>4、不要直接操作<code>this.data</code>,使用this.setData函数，切记、切记</p>
+
+      
+    </div>
+    
+    
+    
+    
+      <div>
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+  <p><span>本文作者:</span><a href="/" title="访问 Orton Zhang 的个人博客">Orton Zhang</a></p>
+  <p><span>本文链接:</span><a href="/2018/02/11/wechat-mini-program/" title="初探微信小程序">http://ortonzhang.com/2018/02/11/wechat-mini-program/</a>
+  </p>
+  <p><span>版权声明:</span>本博客所有文章除特别声明外，均采用<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" title="CC BY-NC-SA 3.0 CN">CC BY-NC-SA 3.0 CN</a> 许可协议。转载请注明出处！</p>  
+</div>
+
+      </div>
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag"><i class="fa fa-tag"></i> js</a>
+          
+            <a href="/tags/小程序/" rel="tag"><i class="fa fa-tag"></i> 小程序</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/11/quick-start-grid/" rel="next" title="快速开始grid布局">
+                <i class="fa fa-chevron-left"></i> 快速开始grid布局
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="Orton Zhang" />
+            
+              <p class="site-author-name" itemprop="name">Orton Zhang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Ortonzhang" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://weibo.com/5189572269/profile?rightmod=1&wvr=6&mod=personinfo" target="_blank" title="weibo">
+                    
+                      <i class="fa fa-fw fa-globe"></i>weibo</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发前的准备"><span class="nav-number">2.</span> <span class="nav-text">开发前的准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速开始"><span class="nav-number">3.</span> <span class="nav-text">快速开始</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目结构"><span class="nav-number">4.</span> <span class="nav-text">项目结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计理念"><span class="nav-number">5.</span> <span class="nav-text">设计理念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事件传递参数"><span class="nav-number">5.1.</span> <span class="nav-text">事件传递参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#setData函数拓展"><span class="nav-number">5.2.</span> <span class="nav-text">setData函数拓展</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#路由"><span class="nav-number">6.</span> <span class="nav-text">路由</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据过滤-过滤器"><span class="nav-number">6.1.</span> <span class="nav-text">数据过滤 过滤器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WXS"><span class="nav-number">6.2.</span> <span class="nav-text">WXS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tip"><span class="nav-number">7.</span> <span class="nav-text">tip</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Orton Zhang</span>
+
+  
+</div>
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共7.8k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="javascript," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Orton Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="概念 IntersectionObserver接口(从属于Intersection Observer API)为开发者提供了一种可以异步监听目标元素与其祖先或视窗(viewport)交叉状态的手段。祖先元素与视窗(viewport)被称为根(root)。  这是MDN上给的官方概念，不用去管它，我粘出来只是为了显得专业点嘛…">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="谈谈IntersectionObserver懒加载">
+<meta property="og:url" content="http://ortonzhang.com/2018/02/11/IntersectionObserver/index.html">
+<meta property="og:site_name" content="Orton Blog">
+<meta property="og:description" content="概念 IntersectionObserver接口(从属于Intersection Observer API)为开发者提供了一种可以异步监听目标元素与其祖先或视窗(viewport)交叉状态的手段。祖先元素与视窗(viewport)被称为根(root)。  这是MDN上给的官方概念，不用去管它，我粘出来只是为了显得专业点嘛…">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4060631-17210430f2cbf15c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4060631-ae60b52ea8a52184.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4060631-53a2d2fee0ef61ad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4060631-dfe6e9f2e933ae23.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4060631-8637bab61b03c04b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-02-11T15:18:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="谈谈IntersectionObserver懒加载">
+<meta name="twitter:description" content="概念 IntersectionObserver接口(从属于Intersection Observer API)为开发者提供了一种可以异步监听目标元素与其祖先或视窗(viewport)交叉状态的手段。祖先元素与视窗(viewport)被称为根(root)。  这是MDN上给的官方概念，不用去管它，我粘出来只是为了显得专业点嘛…">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/4060631-17210430f2cbf15c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://ortonzhang.com/2018/02/11/IntersectionObserver/"/>
+
+
+
+
+
+  <title>谈谈IntersectionObserver懒加载 | Orton Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/Ortonzhang"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Orton Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Orton Blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://ortonzhang.com/2018/02/11/IntersectionObserver/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orton Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orton Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">谈谈IntersectionObserver懒加载</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-11T23:16:40+08:00">
+                2018-02-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,221
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><blockquote>
+<p>IntersectionObserver接口(从属于Intersection Observer API)为开发者提供了一种可以异步监听目标元素与其祖先或视窗(viewport)交叉状态的手段。祖先元素与视窗(viewport)被称为根(root)。</p>
+</blockquote>
+<p>这是MDN上给的官方概念，不用去管它，我粘出来只是为了显得专业点嘛…</p>
+<a id="more"></a>
+<p>重点看这里<strong>监听目标元素与其祖先或视窗交叉状态的手段</strong>，其实就是观察一个元素是否在视窗可见。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4060631-17210430f2cbf15c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="是否可见"></p>
+<p>可以看到，交叉了就是说明当前元素在视窗里，当前就是可见的了。</p>
+<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var io = new IntersectionObserver(callback, options)</div></pre></td></tr></table></figure>
+<p>其实就是一个简单的构造函数。</p>
+<p>以上代码会返回一个<code>IntersectionObserver</code>实例，<code>callback</code>是当元素的可见性变化时候的回调函数，<code>options</code>是一些配置项（可选）。</p>
+<p>我们使用返回的这个实例来进行一些操作。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">io.observe(<span class="built_in">document</span>.querySelector(<span class="string">'img'</span>))  开始观察，接受一个DOM节点对象</div><div class="line">io.unobserve(element)   停止观察 接受一个element元素</div><div class="line">io.disconnect() 关闭观察器</div></pre></td></tr></table></figure></p>
+<h3 id="options"><a href="#options" class="headerlink" title="options"></a>options</h3><p>root</p>
+<p>用于观察的根元素，默认是浏览器的视口，也可以指定具体元素，指定元素的时候用于观察的元素必须是指定元素的子元素</p>
+<p>threshold</p>
+<p>用来指定交叉比例，决定什么时候触发回调函数，是一个数组，默认是<code>[0]</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">const options = &#123;</div><div class="line">	root: null,</div><div class="line">	threshold: [0, 0.5, 1]</div><div class="line">&#125;</div><div class="line">var io = new IntersectionObserver(callback, options)</div><div class="line">io.observe(document.querySelector(&apos;img&apos;))</div></pre></td></tr></table></figure>
+<p>上面代码，我们指定了交叉比例为0，0.5，1，当观察元素img0%、50%、100%时候就会触发回调函数</p>
+<p>rootMargin</p>
+<p>用来扩大或者缩小视窗的的大小，使用css的定义方法，<code>10px 10px 30px 20px</code>表示top、right、bottom 和 left的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">const options = &#123;</div><div class="line">	root: document.querySelector(&apos;.box&apos;),</div><div class="line">	threshold: [0, 0.5, 1],</div><div class="line">	rootMargin: &apos;30px 100px 20px&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>为了方便理解，我画了张图，如下</p>
+<p>￼<img src="http://upload-images.jianshu.io/upload_images/4060631-ae60b52ea8a52184.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="options"></p>
+<p>首先我们来看下图上的问题，蓝线是什么呢？他就是咱们定义的root元素，我们添加了<code>rootMargin</code>属性，将视窗的增大了，虚线就是现在的视窗，所以元素现在也就在视窗里面了。</p>
+<p>由此可见，root元素只有在<code>rootMargin</code>为空的时候才是绝对的视窗。</p>
+<p>说了简单的options，接下来我们看下<code>callback</code>。</p>
+<h3 id="callback"><a href="#callback" class="headerlink" title="callback"></a>callback</h3><p>上面我们说到，当元素的可见性变化时，就会触发callback函数。</p>
+<p>callback函数会触发两次，元素进入视窗（开始可见时）和元素离开视窗（开始不可见时）都会触发</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> io = <span class="keyword">new</span> IntersectionObserver(<span class="function">(<span class="params">entries</span>)=&gt;</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(entries)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">io.observe($<span class="number">0</span>)</div></pre></td></tr></table></figure>
+<p>以上代码，请在chrome控制台进行调试，这里我使用了<code>$0</code>选择了上一次我审查元素的选择的节点</p>
+<p>运行结果如下</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4060631-53a2d2fee0ef61ad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="运行结果"></p>
+<p>我们可以看到callback函数有个<code>entries</code>参数，它是个<code>IntersectionObserverEntry</code>对象数组，接下来我们重点说下IntersectionObserverEntry对象</p>
+<h3 id="IntersectionObserverEntry"><a href="#IntersectionObserverEntry" class="headerlink" title="IntersectionObserverEntry"></a>IntersectionObserverEntry</h3><p><code>IntersectionObserverEntry</code>提供观察元素的信息，有七个属性。</p>
+<blockquote>
+<p>boundingClientRect  目标元素的矩形信息<br>intersectionRatio   相交区域和目标元素的比例值   intersectionRect/boundingClientRect 不可见时小于等于0<br>intersectionRect    目标元素和视窗（根）相交的矩形信息 可以称为相交区域<br>isIntersecting      目标元素当前是否可见 Boolean值 可见为true<br>rootBounds              根元素的矩形信息，没有指定根元素就是当前视窗的矩形信息<br>target                      观察的目标元素<br>time                返回一个记录从<code>IntersectionObserver</code>的时间到交叉被触发的时间的时间戳</p>
+</blockquote>
+<p>上面几个矩形信息的关系如下</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4060631-dfe6e9f2e933ae23.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="关系.png"></p>
+<p>👇 划重点</p>
+<p><strong>intersectionRatio</strong>和<strong>isIntersecting</strong>是用来判断元素是否可见的，押题咯…</p>
+<h3 id="懒加载"><a href="#懒加载" class="headerlink" title="懒加载"></a>懒加载</h3><p>好了，通过上面一些概念我们大概了解了<code>IntersectionObserver</code>是个什么东西，接下来我们用它来写点代码，写什么呢？没错就是懒加载。</p>
+<p>通过IntersectionObserver来实现懒加载，就简单的多了，我们只需要设置回调，判断当前元素是否可见，再进行渲染操作就行了，而不用去关心内部的计算。</p>
+<p>主要代码如下<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> io = <span class="keyword">new</span> IntersectionObserver(<span class="function"><span class="params">()</span>=&gt;</span>&#123; <span class="comment">// 实例化 默认基于当前视窗</span></div><div class="line">	</div><div class="line">&#125;)  </div><div class="line"></div><div class="line"><span class="keyword">let</span> ings = <span class="built_in">document</span>.querySelectorAll(<span class="string">'[data-src]'</span>) <span class="comment">// 将图片的真实url设置为data-src src属性为占位图 元素可见时候替换src</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">callback</span>(<span class="params">entries</span>)</span>&#123;  </div><div class="line">	entries.forEach(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123; <span class="comment">// 遍历entries数组</span></div><div class="line">		<span class="keyword">if</span>(item.isIntersecting)&#123; <span class="comment">// 当前元素可见</span></div><div class="line">			item.target.src = item.target.dataset.src  <span class="comment">// 替换src</span></div><div class="line">			io.unobserve(item.target)  <span class="comment">// 停止观察当前元素 避免不可见时候再次调用callback函数</span></div><div class="line">		&#125;	</div><div class="line">	&#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">imgs.forEach(<span class="function">(<span class="params">item</span>)=&gt;</span>&#123;  <span class="comment">// io.observe接受一个DOM元素，添加多个监听 使用forEach</span></div><div class="line">	io.observe(item)</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>本想录制个GIF图，使用Recordlt始终上传不了，谁有好用的GIF图录制软件请推荐个，不胜感激。。</p>
+<p>呐，给你花🌹</p>
+<p>因篇幅有限，完整代码请戳<a href="https://github.com/Ortonzhang/simple-code/tree/master/javascript/IntersectionObserver" target="_blank" rel="external">github</a>  😜</p>
+<h3 id="⚠️注意"><a href="#⚠️注意" class="headerlink" title="⚠️注意"></a>⚠️注意</h3><p>目前IntersectionObserver是一个实验中的功能，请酌情使用。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4060631-8637bab61b03c04b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="兼容性"></p>
+
+      
+    </div>
+    
+    
+    
+    
+      <div>
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+  <p><span>本文作者:</span><a href="/" title="访问 Orton Zhang 的个人博客">Orton Zhang</a></p>
+  <p><span>本文链接:</span><a href="/2018/02/11/IntersectionObserver/" title="谈谈IntersectionObserver懒加载">http://ortonzhang.com/2018/02/11/IntersectionObserver/</a>
+  </p>
+  <p><span>版权声明:</span>本博客所有文章除特别声明外，均采用<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" title="CC BY-NC-SA 3.0 CN">CC BY-NC-SA 3.0 CN</a> 许可协议。转载请注明出处！</p>  
+</div>
+
+      </div>
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"><i class="fa fa-tag"></i> javascript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/11/clip-progress-bar/" rel="next" title="clip实现圆环进度条">
+                <i class="fa fa-chevron-left"></i> clip实现圆环进度条
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/11/quick-start-grid/" rel="prev" title="快速开始grid布局">
+                快速开始grid布局 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="Orton Zhang" />
+            
+              <p class="site-author-name" itemprop="name">Orton Zhang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Ortonzhang" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://weibo.com/5189572269/profile?rightmod=1&wvr=6&mod=personinfo" target="_blank" title="weibo">
+                    
+                      <i class="fa fa-fw fa-globe"></i>weibo</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API"><span class="nav-number">2.</span> <span class="nav-text">API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#options"><span class="nav-number">2.1.</span> <span class="nav-text">options</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#callback"><span class="nav-number">2.2.</span> <span class="nav-text">callback</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IntersectionObserverEntry"><span class="nav-number">2.3.</span> <span class="nav-text">IntersectionObserverEntry</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#懒加载"><span class="nav-number">2.4.</span> <span class="nav-text">懒加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#⚠️注意"><span class="nav-number">2.5.</span> <span class="nav-text">⚠️注意</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Orton Zhang</span>
+
+  
+</div>
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共7.8k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
