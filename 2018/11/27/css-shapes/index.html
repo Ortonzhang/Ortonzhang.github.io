@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="css," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Orton Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="啰里八嗦今天不瞎扯了，我想嘱咐你几句。你做为一名程序猿，一定多注意身体，尤其是职业病—颈椎病、肩周炎，一定要多起身活动活动，多注意休息，照顾好自己，锻炼起来，别懒。">
+<meta name="keywords" content="css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="shapes 创建炫酷的内容流">
+<meta property="og:url" content="http://ortonzhang.com/2018/11/27/css-shapes/index.html">
+<meta property="og:site_name" content="Orton Blog">
+<meta property="og:description" content="啰里八嗦今天不瞎扯了，我想嘱咐你几句。你做为一名程序猿，一定多注意身体，尤其是职业病—颈椎病、肩周炎，一定要多起身活动活动，多注意休息，照顾好自己，锻炼起来，别懒。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/19/1623dfa719bb7c90?w=1364&h=1118&f=jpeg&s=514823">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/19/1623dfbb761fccf0?w=1277&h=533&f=gif&s=948839">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/19/1623dfc54df0e8ce?w=1268&h=716&f=jpeg&s=199844">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/19/1623dfd4f361d5c5?w=2558&h=1052&f=png&s=612330">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/19/1623dfd94aecaab0?w=2558&h=1040&f=png&s=610014">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/19/1623dfdcce4df525?w=2560&h=1154&f=png&s=615459">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/19/1623dfe14741ec02?w=2548&h=1138&f=png&s=612080">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/19/1623dff8b1a1314f?w=2558&h=1182&f=jpeg&s=828797">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/19/1623dfff5c2c4273?w=2558&h=1116&f=jpeg&s=790515">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/19/1623e00887463881?w=2558&h=1206&f=jpeg&s=802124">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/19/1623e00ce12ce7ab?w=2540&h=1212&f=jpeg&s=803988">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/19/1623e0100cae77d9?w=2554&h=1228&f=jpeg&s=811091">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/19/1623e016397d2a99?w=2558&h=1200&f=jpeg&s=831043">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/19/1623e02cc030c124?w=2558&h=1308&f=jpeg&s=762549">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/19/1623e032e564d233?w=1278&h=651&f=gif&s=4200065">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/19/1623e037aac9e262?w=2492&h=1308&f=jpeg&s=740272">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/19/1623e06f16b5bfc0?w=1478&h=1360&f=png&s=1513249">
+<meta property="og:updated_time" content="2018-11-27T07:12:37.962Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="shapes 创建炫酷的内容流">
+<meta name="twitter:description" content="啰里八嗦今天不瞎扯了，我想嘱咐你几句。你做为一名程序猿，一定多注意身体，尤其是职业病—颈椎病、肩周炎，一定要多起身活动活动，多注意休息，照顾好自己，锻炼起来，别懒。">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/3/19/1623dfa719bb7c90?w=1364&h=1118&f=jpeg&s=514823">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://ortonzhang.com/2018/11/27/css-shapes/"/>
+
+
+
+
+
+  <title>shapes 创建炫酷的内容流 | Orton Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/Ortonzhang"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Orton Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Orton Blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://ortonzhang.com/2018/11/27/css-shapes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orton Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orton Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">shapes 创建炫酷的内容流</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-27T15:09:27+08:00">
+                2018-11-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/css/" itemprop="url" rel="index">
+                    <span itemprop="name">css</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,205
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="啰里八嗦"><a href="#啰里八嗦" class="headerlink" title="啰里八嗦"></a>啰里八嗦</h2><p>今天不瞎扯了，我想嘱咐你几句。你做为一名程序猿，一定多注意身体，尤其是职业病—颈椎病、肩周炎，一定要多起身活动活动，多注意休息，照顾好自己，锻炼起来，别懒。</p>
+<a id="more"></a>
+<h2 id="痛点"><a href="#痛点" class="headerlink" title="痛点"></a>痛点</h2><p>我们知道，web布局可以理解为就是堆盒子，盒子嘛，就是一个块堆一个块，也就是一个矩形加一个矩形，所以文字只能围在矩形的周边，也就是下面这样。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/3/19/1623dfa719bb7c90?w=1364&amp;h=1118&amp;f=jpeg&amp;s=514823" alt="web文字布局"></p>
+<h2 id="新的伙伴"><a href="#新的伙伴" class="headerlink" title="新的伙伴"></a>新的伙伴</h2><p>shapes允许我们在浮动元素中用css设置几何形状和图片用来设置文本流动的区域，到底是什么呢？接下来我们用个简单的demo揭开它的神秘面纱。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/3/19/1623dfbb761fccf0?w=1277&amp;h=533&amp;f=gif&amp;s=948839" alt="demo"></p>
+<p>以上的布局很简单，这里就不解释了，我们主要说下<code>shape-outside</code>这个属性，可以看到我们设置了这个属性，文本流不再是一个矩形而是围绕着元素的圆形区域进行排列。</p>
+<h2 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h2><p><img src="https://user-gold-cdn.xitu.io/2018/3/19/1623dfc54df0e8ce?w=1268&amp;h=716&amp;f=jpeg&amp;s=199844" alt="兼容性"></p>
+<p>虽然目前是实验性的，不过还是可以学来耍耍，接下来，我们来一步一步揭开它的神秘面纱。</p>
+<h2 id="shape-outside"><a href="#shape-outside" class="headerlink" title="shape-outside"></a>shape-outside</h2><p>这个属性定义了一个行内内容应该包裹的形状，默认值是<code>margin-box</code></p>
+<h3 id="关键字值"><a href="#关键字值" class="headerlink" title="关键字值"></a>关键字值</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">margin-box</span>   <span class="comment">/*  形状包含元素的margin值  content + margin */</span></div><div class="line">	</div><div class="line"><span class="selector-tag">padding-box</span>  <span class="comment">/*  形状包含padding值 content + padding */</span></div><div class="line"></div><div class="line"><span class="selector-tag">content-box</span>  <span class="comment">/*  形状就是元素本身的值 content */</span></div><div class="line"></div><div class="line"><span class="selector-tag">border-box</span>   <span class="comment">/*  形状包含元素的border值  content + border */</span></div><div class="line"></div><div class="line"><span class="selector-tag">none</span>         <span class="comment">/*  不设置 */</span></div></pre></td></tr></table></figure>
+<p>下面的图可以看到它们之间的差异</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/3/19/1623dfd4f361d5c5?w=2558&amp;h=1052&amp;f=png&amp;s=612330" alt="content-box"></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/3/19/1623dfd94aecaab0?w=2558&amp;h=1040&amp;f=png&amp;s=610014" alt="border-box"></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/3/19/1623dfdcce4df525?w=2560&amp;h=1154&amp;f=png&amp;s=615459" alt="margin-box"></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/3/19/1623dfe14741ec02?w=2548&amp;h=1138&amp;f=png&amp;s=612080" alt="padding-box"></p>
+<p>上面的图说明了各个关键字之间的差异，为了方便看，我将元素的border属性注释掉了,你也可以自己调试然后看它们之间的差异。代码请戳<a href="https://github.com/Ortonzhang/simple-code/tree/master/css/shapes/keyworld" target="_blank" rel="external">这里</a></p>
+<h3 id="函数值"><a href="#函数值" class="headerlink" title="函数值"></a>函数值</h3><h4 id="circle"><a href="#circle" class="headerlink" title="circle"></a>circle</h4><p>用来创建一个圆形区域，语法为circle(r at x y), 默认r为元素的宽度的一半，x和y的坐标是50%，也就是元素的中间,x和y可以是百分比也可以是具体数值。</p>
+<p>以元素宽为200px来算，circle(100px at 50% 50%)和circle()的效果是一样的。通过更改x和y的左标,可以更改圆心的位置，但是并不更改元素的实际大小。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/3/19/1623dff8b1a1314f?w=2558&amp;h=1182&amp;f=jpeg&amp;s=828797" alt=""></p>
+<p><strong>写法</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">circle</span>(100<span class="selector-tag">px</span> <span class="selector-tag">at</span> 30% 40% )  <span class="comment">/* 推荐写法 */</span></div><div class="line"><span class="selector-tag">circle</span>(<span class="selector-tag">at</span> 30% 40% )  <span class="comment">/* 错误写法 */</span></div><div class="line"><span class="selector-tag">circle</span>(100<span class="selector-tag">px</span>) <span class="comment">/* x，y位置均为50% */</span></div></pre></td></tr></table></figure>
+<h4 id="ellipse"><a href="#ellipse" class="headerlink" title="ellipse"></a>ellipse</h4><p>用来创建一个椭圆形区域，语法为<code>ellipse(xr yr at x y )</code>, 第一个是水平方向半径，第二个是垂直方向半径, 创建一个椭圆为ellipse(60px 120px at 100px 40px);</p>
+<p>如果只是设置ellipse()，水平、垂直方向半径均为元素的一半，x、y也都是50%，也就是元素中心上自己大小的正圆，如果元素不是正方形，两个半径就各是元素宽高的一半 水平对应宽 垂直对应高。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/3/19/1623dfff5c2c4273?w=2558&amp;h=1116&amp;f=jpeg&amp;s=790515" alt=""></p>
+<p><strong>写法</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">1、ellipse()  // 看元素自己的宽高</div><div class="line">2、ellipse(30px) // 水平半径为30px 垂直为元素的高 x、y为50%</div><div class="line">3、ellipse(30px 90px) //  水平半径为30px 垂直半径为90px x、y为50%</div><div class="line">4、ellipse(30px 90px at 100px 100px) //  水平半径为30px 垂直半径为90px x为100px y为100px</div></pre></td></tr></table></figure>
+<h4 id="inset"><a href="#inset" class="headerlink" title="inset"></a>inset</h4><p>定义一个内部矩形。定义矩形的位置与margin和padding一样都是<code>top right bottom left</code></p>
+<p>如 <code>inset(25px 53px 50px 30px)</code></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/3/19/1623e00887463881?w=2558&amp;h=1206&amp;f=jpeg&amp;s=802124" alt="内部矩形"></p>
+<p>一个数值的时候可以理解为所有方向的缩放， 如<code>inset(10%)</code></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/3/19/1623e00ce12ce7ab?w=2540&amp;h=1212&amp;f=jpeg&amp;s=803988" alt="缩放"></p>
+<p>设置矩形的<code>border-radius</code>，使用<code>round</code>关键字 如<code>inset(10% round 50%)</code></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/3/19/1623e0100cae77d9?w=2554&amp;h=1228&amp;f=jpeg&amp;s=811091" alt="设置矩形的圆角"></p>
+<p>也可以分开来设置每个方向的圆角，这和<code>border-radius</code>的语法一致， 如<code>inset(10% round 50px 20px 40px 0)</code></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/3/19/1623e016397d2a99?w=2558&amp;h=1200&amp;f=jpeg&amp;s=831043" alt="设置多个圆角"></p>
+<p><strong>写法</strong></p>
+<p>设置矩形的时候和margin一样，设置圆角的时候和border-radius一样，这里就不赘述了。</p>
+<h4 id="polygon"><a href="#polygon" class="headerlink" title="polygon"></a>polygon</h4><p>定义多边形，语法为<code>polygon(x1 y1, x2 y2, x3 y3)</code>,设置多个点的坐标来定义多边形，坐标可以是具体数值和百分比，并且开始与结束必须是一个闭合的路径。</p>
+<p>计算多变形是一个极其麻烦的事情，推荐使用chrome的扩展 <a href="https://chrome.google.com/webstore/detail/css-shapes-editor/nenndldnbcncjmeacmnondmkkfedmgmp" target="_blank" rel="external">CSS Shapes Editor</a>,添加完后，会在控制台的elements右侧添加<code>Shapes</code>table页</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/3/19/1623e02cc030c124?w=2558&amp;h=1308&amp;f=jpeg&amp;s=762549" alt="扩展"></p>
+<p>使用起来还是很简单的，录了个GIF图可以参考下，点击添加做吧，双击删除坐标。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/3/19/1623e032e564d233?w=1278&amp;h=651&amp;f=gif&amp;s=4200065" alt="gif使用"></p>
+<h3 id="url值"><a href="#url值" class="headerlink" title="url值"></a>url值</h3><p>还可以使用透明的PNG图片创建形状，语法如下</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">shape-outside</span>: <span class="selector-tag">url</span>(<span class="selector-tag">bg</span><span class="selector-class">.png</span>);  <span class="comment">/* 背景图 */</span></div><div class="line"><span class="selector-tag">shape-image-threshold</span><span class="selector-pseudo">:.5</span>;  <span class="comment">/* 用来设置不透明度  [0,1] 1为不透明 0为完全透明 */</span></div></pre></td></tr></table></figure>
+<p><img src="https://user-gold-cdn.xitu.io/2018/3/19/1623e037aac9e262?w=2492&amp;h=1308&amp;f=jpeg&amp;s=740272" alt="PNG图片创建形状"></p>
+<h2 id="shape-margin"><a href="#shape-margin" class="headerlink" title="shape-margin"></a>shape-margin</h2><p>上面我们使用了一个新的属性<code>shape-margin</code>，它是用来给浮动区域添加空白区域，可以使用px、rem、em等单位。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>完整代码请<a href="https://github.com/Ortonzhang/simple-code/tree/master/css/shapes" target="_blank" rel="external">戳这里</a></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.w3cplus.com/css3/css-shapes-breaking-rectangular-design.html" target="_blank" rel="external">CSS Shapes：打破矩形设计的限制</a></p>
+<h2 id="炫酷效果"><a href="#炫酷效果" class="headerlink" title="炫酷效果"></a>炫酷效果</h2><p><img src="https://user-gold-cdn.xitu.io/2018/3/19/1623e06f16b5bfc0?w=1478&amp;h=1360&amp;f=png&amp;s=1513249" alt="炫酷效果"></p>
+<p><a href="http://adobe-webplatform.github.io/Demo-for-Alice-s-Adventures-in-Wonderland/" target="_blank" rel="external">动图请戳</a></p>
+
+      
+    </div>
+    
+    
+    
+    
+      <div>
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+  <p><span>本文作者:</span><a href="/" title="访问 Orton Zhang 的个人博客">Orton Zhang</a></p>
+  <p><span>本文链接:</span><a href="/2018/11/27/css-shapes/" title="shapes 创建炫酷的内容流">http://ortonzhang.com/2018/11/27/css-shapes/</a>
+  </p>
+  <p><span>版权声明:</span>本博客所有文章除特别声明外，均采用<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" title="CC BY-NC-SA 3.0 CN">CC BY-NC-SA 3.0 CN</a> 许可协议。转载请注明出处！</p>  
+</div>
+
+      </div>
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/css/" rel="tag"><i class="fa fa-tag"></i> css</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/27/mini-program-picker/" rel="next" title="小程序：动态数据实现三级联动选择器">
+                <i class="fa fa-chevron-left"></i> 小程序：动态数据实现三级联动选择器
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/27/mini-proaram-login-crypto/" rel="prev" title="小程序的登录和数据解密全解析">
+                小程序的登录和数据解密全解析 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="Orton Zhang" />
+            
+              <p class="site-author-name" itemprop="name">Orton Zhang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Ortonzhang" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://weibo.com/5189572269/profile?rightmod=1&wvr=6&mod=personinfo" target="_blank" title="weibo">
+                    
+                      <i class="fa fa-fw fa-globe"></i>weibo</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#啰里八嗦"><span class="nav-number">1.</span> <span class="nav-text">啰里八嗦</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#痛点"><span class="nav-number">2.</span> <span class="nav-text">痛点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新的伙伴"><span class="nav-number">3.</span> <span class="nav-text">新的伙伴</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#兼容性"><span class="nav-number">4.</span> <span class="nav-text">兼容性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shape-outside"><span class="nav-number">5.</span> <span class="nav-text">shape-outside</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关键字值"><span class="nav-number">5.1.</span> <span class="nav-text">关键字值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数值"><span class="nav-number">5.2.</span> <span class="nav-text">函数值</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#circle"><span class="nav-number">5.2.1.</span> <span class="nav-text">circle</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ellipse"><span class="nav-number">5.2.2.</span> <span class="nav-text">ellipse</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#inset"><span class="nav-number">5.2.3.</span> <span class="nav-text">inset</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#polygon"><span class="nav-number">5.2.4.</span> <span class="nav-text">polygon</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#url值"><span class="nav-number">5.3.</span> <span class="nav-text">url值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shape-margin"><span class="nav-number">6.</span> <span class="nav-text">shape-margin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">7.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">8.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#炫酷效果"><span class="nav-number">9.</span> <span class="nav-text">炫酷效果</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Orton Zhang</span>
+
+  
+</div>
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共13.0k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

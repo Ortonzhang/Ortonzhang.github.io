@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="小程序," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Orton Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="每个周五的下午，坐在电脑边，沏上一杯热茶，按捺不住激动的心情，为了周末的休息不上班吗？不，安静的环境是为了能够更好的学习！！！">
+<meta name="keywords" content="小程序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小程序：动态数据实现三级联动选择器">
+<meta property="og:url" content="http://ortonzhang.com/2018/11/27/mini-program-picker/index.html">
+<meta property="og:site_name" content="Orton Blog">
+<meta property="og:description" content="每个周五的下午，坐在电脑边，沏上一杯热茶，按捺不住激动的心情，为了周末的休息不上班吗？不，安静的环境是为了能够更好的学习！！！">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/9/162096ea5269913b?w=852&h=748&f=png&s=302091">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/9/162096ea527f9576?w=375&h=594&f=gif&s=148679">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/9/162096ea525e1df1?w=346&h=389&f=png&s=16878">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/9/162096ea52787f36?w=858&h=922&f=png&s=268409">
+<meta property="og:updated_time" content="2018-11-27T07:08:28.651Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="小程序：动态数据实现三级联动选择器">
+<meta name="twitter:description" content="每个周五的下午，坐在电脑边，沏上一杯热茶，按捺不住激动的心情，为了周末的休息不上班吗？不，安静的环境是为了能够更好的学习！！！">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/3/9/162096ea5269913b?w=852&h=748&f=png&s=302091">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://ortonzhang.com/2018/11/27/mini-program-picker/"/>
+
+
+
+
+
+  <title>小程序：动态数据实现三级联动选择器 | Orton Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/Ortonzhang"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Orton Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Orton Blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://ortonzhang.com/2018/11/27/mini-program-picker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orton Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orton Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">小程序：动态数据实现三级联动选择器</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-27T15:07:15+08:00">
+                2018-11-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/小程序/" itemprop="url" rel="index">
+                    <span itemprop="name">小程序</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,598
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>每个周五的下午，坐在电脑边，沏上一杯热茶，按捺不住激动的心情，为了周末的休息不上班吗？不，安静的环境是为了能够更好的学习！！！</p>
+<a id="more"></a>
+<p><img src="https://user-gold-cdn.xitu.io/2018/3/9/162096ea5269913b?w=852&amp;h=748&amp;f=png&amp;s=302091" alt="image.png"></p>
+<h2 id="便捷的picker"><a href="#便捷的picker" class="headerlink" title="便捷的picker"></a>便捷的picker</h2><p>借助<a href="https://mp.weixin.qq.com/debug/wxadoc/dev/component/picker.html" target="_blank" rel="external">picker</a>组件可以很便捷的帮我们实现省市区、日期时间、多列选择器，接下来我们来来实现一个动态数据的多列选择器。</p>
+<h2 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h2><p>先上效果图</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/3/9/162096ea527f9576?w=375&amp;h=594&amp;f=gif&amp;s=148679" alt="效果图"></p>
+<h2 id="交互"><a href="#交互" class="headerlink" title="交互"></a>交互</h2><p>首先用户点击选择购车门店按钮，选择省级地区，然后通过选择的省级key充当查询条件获取市级数据，然后用选择市级后的key查询门店数据。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/3/9/162096ea525e1df1?w=346&amp;h=389&amp;f=png&amp;s=16878" alt="image.png"></p>
+<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><p>后端哥们给的数据结构都一样，长这个样子<br><img src="https://user-gold-cdn.xitu.io/2018/3/9/162096ea52787f36?w=858&amp;h=922&amp;f=png&amp;s=268409" alt="数据结构"></p>
+<p>我们使用每条数据的<code>value</code>用来显示，使用<code>key</code> 来进行请求，最后获取到选择的门店<code>key</code>，然后丢个后端哥们进行保存即可。</p>
+<h2 id="wxml"><a href="#wxml" class="headerlink" title="wxml"></a>wxml</h2><p>来来来，跟着我的节奏，让我看到你们的双手，哎，没让你打节奏，是敲代码 🤗️🤗️<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;picker mode=&quot;multiSelector&quot; range=&quot;&#123;&#123;multiArray&#125;&#125;&quot; bindcolumnchange=&quot;columnchange&quot; value=&quot;&#123;&#123;multiIndex&#125;&#125;&quot; bindchange=&apos;pickchange&apos;&gt;</div><div class="line">  &lt;view class=&apos;right&apos; wx:if=&quot;&#123;&#123;multiArray[2][multiIndex[2]] &amp;&amp; step == 0&#125;&#125;&quot;&gt;</div><div class="line">        &lt;text&gt;请选择&lt;/text&gt;</div><div class="line">      &lt;/view&gt;</div><div class="line">      &lt;view class=&quot;picker&quot; wx:if=&quot;&#123;&#123;multiArray[2][multiIndex[2]] &amp;&amp; step == 1&#125;&#125;&quot;&gt;</div><div class="line">        &lt;text&gt;&#123;&#123;multiArray[2][multiIndex[2]]&#125;&#125;&lt;/text&gt;</div><div class="line">      &lt;/view&gt;</div><div class="line">&lt;/picker&gt;</div></pre></td></tr></table></figure></p>
+<p>老规矩，说下上面的代码到底干了啥</p>
+<p>1、picker组件用来创建一个从底部弹起的滚动选择器<br>2、<code>mode=&quot;multiSelector&quot;</code>用来声明创建的是多列选择器<br>3、<code>range=&quot;&quot;</code> <code>multiArray</code>就是我们的多维数组，这次我们用来放置数据所有的名字<br>4、<code>value=&quot;&quot;</code>  <code>multiIndex</code>也是数组，用来表示选择的多维数组的每一项的第几个<br>5、<code>bindchange</code>是value改变触发的事件，<code>bindcolumnchange</code>每一列值改变时候触发的事件</p>
+<p>如果你需要一个完美的解释，请戳 👇<br><a href="https://mp.weixin.qq.com/debug/wxadoc/dev/component/picker.html" target="_blank" rel="external">完整API</a></p>
+<h2 id="两个小伙伴"><a href="#两个小伙伴" class="headerlink" title="两个小伙伴"></a>两个小伙伴</h2><h3 id="bindcolumnchange"><a href="#bindcolumnchange" class="headerlink" title="bindcolumnchange"></a>bindcolumnchange</h3><p>上面说了，bindcolumnchange用来绑定每一列值改变时候触发的事件，他高大威猛<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">columnchange(e)&#123;</div><div class="line">    console.log(e.detail)   // &#123;column: 2, value: 1&#125;</div><div class="line">    switch (e.detail.column)  &#123; // 此时的改变列数</div><div class="line">      case 0:</div><div class="line">          // 处理逻辑</div><div class="line">      break;</div><div class="line">      case 1:</div><div class="line">          //  处理逻辑</div><div class="line">      break;</div><div class="line">    &#125;</div><div class="line">    this.setData(&#123;</div><div class="line">      // 更新数据</div><div class="line">    &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>column 的值表示改变了第几列（下标从0开始），value 的值表示变更值的下标</strong></p>
+<h3 id="bindchange"><a href="#bindchange" class="headerlink" title="bindchange"></a>bindchange</h3><p>bindchange用来绑定value改变触发的事件，他很清秀<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">pickchange(e)&#123; <span class="comment">// picker发送选择改变时候触发 通过e.detail.value获取携带的值</span></div><div class="line">    <span class="built_in">console</span>.log(e.detail.value)  <span class="comment">//   [0,1,2]  </span></div><div class="line">    <span class="keyword">this</span>.setData(&#123;</div><div class="line">      multiIndex: e.detail.value  <span class="comment">// 直接更新即可</span></div><div class="line">    &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="逻辑"><a href="#逻辑" class="headerlink" title="逻辑"></a>逻辑</h2><p>认识了上面的两个小伙伴，我们来缕下思路，然后来搬砖盖房。实现起来大体分为以下几步：</p>
+<p>1、加载省级数据，处理后放置在<code>multiArray</code>里面，存储下原始数据并用第一个数据的<code>key</code>请求市级数据，拿到市级数据后做同样操作，门店同理。<br>2、编写<code>columnchange</code>和<code>pickchange</code>函数，用来处理选择器更改时候的操作<br>3、页面加载后，调用获取省级数据的函数，这个函数自己会去拿市级和门店的数据</p>
+<p>以上若不明白，可以结合最后的代码去理解</p>
+<h2 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div></pre></td><td class="code"><pre><div class="line">var app = getApp()</div><div class="line">Page(&#123;</div><div class="line">  data: &#123;</div><div class="line">    multiArray:[],  // 三维数组数据</div><div class="line">    multiIndex:[0, 0, 0], // 默认的下标</div><div class="line">    step:0, // 默认显示请选择</div><div class="line">  &#125;,</div><div class="line">  onLoad: function (options) &#123;</div><div class="line">    this.getProvince()  // 页面加载后就调用函数 获取省级数据</div><div class="line">  &#125;,</div><div class="line">  getProvince()&#123; // 获取省</div><div class="line">    app.Util.ajax(&apos;/gw/app/saler/store/province_list&apos;, &apos;&apos;, &apos;post&apos;).then((data) =&gt; &#123;</div><div class="line">      var provinceList = [...data] // 放在一个数组里面</div><div class="line">      var provinceArr = data.map((item) =&gt; &#123; return item.value &#125;) // 获取数据里面的value值，就是只用数据的名称 </div><div class="line">      this.setData(&#123;</div><div class="line">        multiArray: [provinceArr, [], []], // 更新三维数组 更新后长这样 [[&apos;江苏省&apos;, &apos;福建省&apos;],[],[]]</div><div class="line">        provinceList,   // 省级原始数据</div><div class="line">        provinceArr    // 省级所有的名称</div><div class="line">      &#125;)</div><div class="line">      var defaultCode = this.data.provinceList[0].key  // 使用第一项当作参数获取市级数据</div><div class="line">      if (defaultCode)&#123;</div><div class="line">        this.setData(&#123;</div><div class="line">          currnetProvinceKey: defaultCode  // 保存在当前的省级key</div><div class="line">        &#125;)</div><div class="line">        this.getCity(defaultCode)  // 获取市级数据</div><div class="line">      &#125;</div><div class="line">    &#125;)</div><div class="line">  &#125;,</div><div class="line">  getCity(code)&#123; // 获取市级数据</div><div class="line">    this.setData(&#123;</div><div class="line">      currnetProvinceKey: code  // 保存当前选择的市级code</div><div class="line">    &#125;)</div><div class="line">    app.Util.ajax(&apos;/gw/app/saler/store/city_list&apos;, &#123; provinceCode: code &#125;, &apos;post&apos;, &#123; &apos;content-type&apos;: &apos;application/x-www-form-urlencoded&apos; &#125;).then((data) =&gt; &#123;</div><div class="line">      var cityArr = data.map((item) =&gt; &#123; return item.value &#125;)</div><div class="line">      var cityList = [...data]</div><div class="line">      this.setData(&#123;</div><div class="line">        multiArray: [this.data.provinceArr, cityArr, []],  // 更新三维数组 更新后长这样 [[&apos;江苏省&apos;, &apos;福建省&apos;], [&apos;徐州市&apos;], []]</div><div class="line">        cityList,  // 保存下市级原始数据</div><div class="line">        cityArr  // 市级所有的名称</div><div class="line">      &#125;)</div><div class="line">      var defaultCode = this.data.cityList[0].key  // 用第一个获取门店数据</div><div class="line">      if (defaultCode)&#123;</div><div class="line">        this.setData(&#123;</div><div class="line">          currnetCityKey: defaultCode  // 存下当前选择的城市key</div><div class="line">        &#125;)</div><div class="line">        this.getStore(defaultCode) // 获取门店数据</div><div class="line">      &#125;</div><div class="line">    &#125;)</div><div class="line">  &#125;,</div><div class="line">  getStore(code)&#123;</div><div class="line">    this.setData(&#123;</div><div class="line">      currnetCityKey: code // 更新当前选择的市级key</div><div class="line">    &#125;)</div><div class="line">    app.Util.ajax(&apos;/gw/app/saler/store/store_list&apos;, &#123; cityCode: code &#125;, &apos;post&apos;, &#123; &apos;content-type&apos;: &apos;application/x-www-form-urlencoded&apos; &#125;).then((data) =&gt; &#123;</div><div class="line">      var storeList = [...data]</div><div class="line">      var storeArr = data.map((item) =&gt; &#123; return item.value&#125;)</div><div class="line">      this.setData(&#123;</div><div class="line">        multiArray: [this.data.provinceArr, this.data.cityArr, storeArr],  // 重新赋值三级数组 此时的数组大概是这样 [[&apos;江苏省&apos;, &apos;福建省&apos;], [&apos;徐州市&apos;], [&apos;徐州第一门店&apos;,&apos;徐州第二门店&apos;]]</div><div class="line">        storeList,  // 保存下门店原始数据</div><div class="line">        storeArr    // 保存下门店名称，可以不保存</div><div class="line">      &#125;)</div><div class="line">    &#125;)</div><div class="line">  &#125;,</div><div class="line">  columnchange(e)&#123;  // 滚动选择器 触发的事件</div><div class="line">    var column = e.detail.column  // 当前改变的列</div><div class="line">    var data = &#123;  </div><div class="line">      multiIndex: JSON.parse(JSON.stringify(this.data.multiIndex)),</div><div class="line">      multiArray: JSON.parse(JSON.stringify(this.data.multiArray))</div><div class="line">    &#125;</div><div class="line">    data.multiIndex[column] = e.detail.value;  // 第几列改变了就是对应multiIndex的第几个，更新它</div><div class="line">    switch(column)&#123; // 处理不同的逻辑</div><div class="line">      case 0:   // 第一列更改 就是省级的更改</div><div class="line">        var currentProvinceKey = this.data.provinceList[e.detail.value].key  </div><div class="line">        if (currentProvinceKey != this.data.currnetProvinceKey)&#123;  // 判断当前的key是不是真正的更新了</div><div class="line">          this.getCity(currentProvinceKey)  // 获取当前key下面的市级数据</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        data.multiIndex[1] = 0  // 将市默认选择第一个</div><div class="line">        break;</div><div class="line">      </div><div class="line">      case 1:  // 市发生变化</div><div class="line">        var currentCitykey = this.data.cityList[e.detail.value].key</div><div class="line">        if (currentCitykey != this.data.currnetCityKey)&#123;  // 同样判断</div><div class="line">          this.getStore(currentCitykey)   // 获取门店</div><div class="line">        &#125;</div><div class="line">        data.multiIndex[2] = 0  // 门店默认为第一个</div><div class="line">        break;</div><div class="line">    &#125;</div><div class="line">    this.setData(data)  // 更新数据</div><div class="line">  &#125;,</div><div class="line">  pickchange(e)&#123;  </div><div class="line">    this.setData(&#123;</div><div class="line">      step: 1,  // 更新，用来选择用户选中的门店</div><div class="line">      multiIndex: e.detail.value  // 更新下标字段</div><div class="line">    &#125;)</div><div class="line">  &#125;,</div><div class="line">  </div><div class="line">  submit()&#123;  // 保存的时候 获取当前选择门店的key 丢给后端开发即可</div><div class="line">    var storeCode = this.data.storeList[this.data.multiIndex.length - 1].key</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>1、使用picker组件实现多列选择器还是很简单的，我们只需要将处理逻辑放在高大威猛的bindcolumnchange里面就行了。</p>
+<p>2、可以将一些公用的函数封装在Util文件里面，如上面代码的ajax就是放在里面的。</p>
+<p>3、还没想好，凑字数吧。</p>
+
+      
+    </div>
+    
+    
+    
+    
+      <div>
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+  <p><span>本文作者:</span><a href="/" title="访问 Orton Zhang 的个人博客">Orton Zhang</a></p>
+  <p><span>本文链接:</span><a href="/2018/11/27/mini-program-picker/" title="小程序：动态数据实现三级联动选择器">http://ortonzhang.com/2018/11/27/mini-program-picker/</a>
+  </p>
+  <p><span>版权声明:</span>本博客所有文章除特别声明外，均采用<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" title="CC BY-NC-SA 3.0 CN">CC BY-NC-SA 3.0 CN</a> 许可协议。转载请注明出处！</p>  
+</div>
+
+      </div>
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/小程序/" rel="tag"><i class="fa fa-tag"></i> 小程序</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/27/css-variables/" rel="next" title="css自定义属性和聚光灯效果">
+                <i class="fa fa-chevron-left"></i> css自定义属性和聚光灯效果
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/27/css-shapes/" rel="prev" title="shapes 创建炫酷的内容流">
+                shapes 创建炫酷的内容流 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="Orton Zhang" />
+            
+              <p class="site-author-name" itemprop="name">Orton Zhang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Ortonzhang" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://weibo.com/5189572269/profile?rightmod=1&wvr=6&mod=personinfo" target="_blank" title="weibo">
+                    
+                      <i class="fa fa-fw fa-globe"></i>weibo</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#便捷的picker"><span class="nav-number">1.</span> <span class="nav-text">便捷的picker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#效果图"><span class="nav-number">2.</span> <span class="nav-text">效果图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#交互"><span class="nav-number">3.</span> <span class="nav-text">交互</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据结构"><span class="nav-number">4.</span> <span class="nav-text">数据结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wxml"><span class="nav-number">5.</span> <span class="nav-text">wxml</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两个小伙伴"><span class="nav-number">6.</span> <span class="nav-text">两个小伙伴</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#bindcolumnchange"><span class="nav-number">6.1.</span> <span class="nav-text">bindcolumnchange</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bindchange"><span class="nav-number">6.2.</span> <span class="nav-text">bindchange</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑"><span class="nav-number">7.</span> <span class="nav-text">逻辑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#完整代码"><span class="nav-number">8.</span> <span class="nav-text">完整代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">9.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Orton Zhang</span>
+
+  
+</div>
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共13.0k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

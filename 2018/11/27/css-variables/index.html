@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="css," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Orton Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="出场曲 神秘巨星来了吗？快，打追光，快，快给她镜头。 ——《神秘巨星》">
+<meta name="keywords" content="css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css自定义属性和聚光灯效果">
+<meta property="og:url" content="http://ortonzhang.com/2018/11/27/css-variables/index.html">
+<meta property="og:site_name" content="Orton Blog">
+<meta property="og:description" content="出场曲 神秘巨星来了吗？快，打追光，快，快给她镜头。 ——《神秘巨星》">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/1/161e05c953011843?w=838&h=900&f=png&s=377830">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/1/161e04ad4385cd65?w=1240&h=539&f=png&s=138124">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/1/161e04ad435c4c7b?w=1240&h=710&f=png&s=114783">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/1/161e04ad4374ce7a?w=1240&h=589&f=png&s=106357">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/1/161e04ad434d89f3?w=1278&h=657&f=gif&s=364125">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/1/161e04ad4383e7f1?w=632&h=439&f=png&s=17568">
+<meta property="og:updated_time" content="2018-11-27T07:05:49.687Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="css自定义属性和聚光灯效果">
+<meta name="twitter:description" content="出场曲 神秘巨星来了吗？快，打追光，快，快给她镜头。 ——《神秘巨星》">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/3/1/161e05c953011843?w=838&h=900&f=png&s=377830">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://ortonzhang.com/2018/11/27/css-variables/"/>
+
+
+
+
+
+  <title>css自定义属性和聚光灯效果 | Orton Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/Ortonzhang"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Orton Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Orton Blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://ortonzhang.com/2018/11/27/css-variables/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orton Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Orton Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">css自定义属性和聚光灯效果</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-27T15:01:01+08:00">
+                2018-11-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/css/" itemprop="url" rel="index">
+                    <span itemprop="name">css</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,291
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="出场曲"><a href="#出场曲" class="headerlink" title="出场曲"></a>出场曲</h2><blockquote>
+<p>神秘巨星来了吗？快，打追光，快，快给她镜头。 ——《神秘巨星》</p>
+</blockquote>
+<a id="more"></a>
+<p>神秘巨星是谁？它就是<code>CSS Variables</code>。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/3/1/161e05c953011843?w=838&amp;h=900&amp;f=png&amp;s=377830" alt=""></p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>CSS Variables，一个并不是那么新的东西，但对css来说绝对是一场革命。</p>
+<p>之前使用变量的时候，需要借助sass、less等预处理工具来实现，现在我们可以直接使用css来声明变量。</p>
+<h2 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h2><p>老规矩，先来看下兼容性</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/3/1/161e04ad4385cd65?w=1240&amp;h=539&amp;f=png&amp;s=138124" alt="兼容性"></p>
+<p>兼容性一片绿，红的那不是还有两个吗？做大事怎么能拘小节呢，让它咕噜（gun）一边去吧。</p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>语法有点难看但很简单，<code>--*</code>来声明变量名，<code>var(--*)</code>来使用，也许你要问了，为什么使用<code>--</code>不用<code>$</code>一类的呢，唉，那不是sass、less两个货用了吗</p>
+<p><strong>声明和使用必须放在{}代码块里</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">body</span>&#123;</div><div class="line">    <span class="attribute">--bg-color</span>: lightblue;</div><div class="line">    <span class="attribute">background-color</span>: <span class="built_in">var</span>(--bg-color);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="https://user-gold-cdn.xitu.io/2018/3/1/161e04ad435c4c7b?w=1240&amp;h=710&amp;f=png&amp;s=114783" alt="效果"></p>
+<p>代码是不是很简单，可以直接看效果，就不赘述了。</p>
+<h2 id="全局变量与变量覆盖"><a href="#全局变量与变量覆盖" class="headerlink" title="全局变量与变量覆盖"></a>全局变量与变量覆盖</h2><p>在<code>:root</code>代码块里面声明的变量就是全局变量，并且局部变量会覆盖全局变量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">:root&#123;</div><div class="line">    --bg-color: red;</div><div class="line">&#125;</div><div class="line">body&#123;</div><div class="line">    --bg-color: lightblue;</div><div class="line">    background-color: var(--bg-color);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>最后生效的是<code>--bg-color: lightblue</code>，<code>bg-color</code>变量的值也就变成了<code>lightblue</code></p>
+<h2 id="变量的缺省值"><a href="#变量的缺省值" class="headerlink" title="变量的缺省值"></a>变量的缺省值</h2><p>完整的变量使用语法 <code>var( [, ]? )</code>，当变量没有定义的时候，会使用后面的值。看下面的例子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">body&#123;</div><div class="line">--1: red;</div><div class="line">color:var(--2, blue);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>上面代码会在<code>body</code>的作用域里面查找<code>--2</code>变量，没有的话就会查找全局，都没有的话就会使用后面的值，所以最后生效的颜色就是blue</p>
+<p>可以看到，上面我们的变量名直接使用了数字😂，css变量很叼的，不只是数字，汉字都是可以的。</p>
+<h2 id="参与计算"><a href="#参与计算" class="headerlink" title="参与计算"></a>参与计算</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">:root&#123;</div><div class="line">    --bg-color: lightblue;</div><div class="line">    --文字颜色: white;</div><div class="line">    --fong-size: 30;</div><div class="line">&#125;</div><div class="line">body&#123;</div><div class="line">    background-color: var(--bg-color);</div><div class="line">&#125;</div><div class="line">div&#123;</div><div class="line">    color: var(--文字颜色);</div><div class="line">    font-size: var(--fong-size)px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>此时div里面的文字的大小是多少呢？是浏览器默认的大小，为什么不是咱们想象的30px呢，这是因为变量转换的时候末尾会带上空格，<code>var(--fong-size)px</code>会转换成<code>30 px</code></p>
+<p>我们可以老老实实声明变量的时候带上单位</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">--fong-size: 30px;</div></pre></td></tr></table></figure>
+<p>或者使用<code>calc()</code>计算属性<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">font-size: calc(var(--fong-size) * 1px);</div></pre></td></tr></table></figure></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/3/1/161e04ad4374ce7a?w=1240&amp;h=589&amp;f=png&amp;s=106357" alt="正确显示"></p>
+<h2 id="js获取与赋值"><a href="#js获取与赋值" class="headerlink" title="js获取与赋值"></a>js获取与赋值</h2><p>我们可以使用js来获取和赋值css变量，你看，是不是老方便了，老铁。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">:root&#123;</div><div class="line">  --bg-color: lightblue;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 获取</span></div><div class="line">getComputedStyle(<span class="built_in">document</span>.documentElement).getPropertyValue(<span class="string">'--bg-color'</span>)  <span class="comment">// lightblue</span></div><div class="line">        </div><div class="line"><span class="comment">// 赋值</span></div><div class="line"><span class="built_in">document</span>.documentElement.style.setProperty(<span class="string">'--bg-color'</span>, <span class="string">'yellowgreen'</span>)</div></pre></td></tr></table></figure>
+<h2 id="简单应用"><a href="#简单应用" class="headerlink" title="简单应用"></a>简单应用</h2><p>上面我们介绍了css变量的声明使用以及使用js来进行获取和赋值的操作，接下来，我们完成个聚光灯的效果（我自己瞎起的，我也不知道应该叫什么），诺，它长这样。GIF图有点卡顿😠，担待着看吧</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/3/1/161e04ad434d89f3?w=1278&amp;h=657&amp;f=gif&amp;s=364125" alt="聚光灯"></p>
+<p>写代码之前我们来梳理下思路，怎么来实现这个效果，主要有以下几步<br>1、声明全局css变量<br>2、设置body为纯黑背景，添加div并设置背景图<br>3、将div的背景图使用<code>clip-path</code>进行裁剪，使用变量设置圆心位置<br>4、添加鼠标事件，动态更改css变量也就是圆心位置</p>
+<p>接下来开始写代码</p>
+<p>布局很简单，就是一个div,我们主要说下css样式<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="selector-pseudo">:root</span>&#123;</div><div class="line">    <span class="attribute">--x</span>: <span class="number">40</span>;</div><div class="line">    <span class="attribute">--y</span>: <span class="number">40</span>;</div><div class="line">&#125;</div><div class="line">*&#123;</div><div class="line">    <span class="attribute">padding</span>: <span class="number">0</span>;</div><div class="line">    <span class="attribute">margin</span>: <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">body</span>&#123;</div><div class="line">    <span class="attribute">width</span>: <span class="number">100vw</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="number">100vh</span>;</div><div class="line">    <span class="attribute">background</span>: <span class="number">#000</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">div</span>&#123;</div><div class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="number">100%</span>;</div><div class="line">    <span class="attribute">background</span>: <span class="built_in">url</span>(<span class="string">'../images/bg.png'</span>) <span class="number">0</span> <span class="number">0</span> no-repeat;</div><div class="line">    <span class="attribute">clip-path</span>: <span class="built_in">circle</span>(100px at calc(var(--x) * <span class="number">1px</span> ) <span class="built_in">calc</span>(var(--y) * <span class="number">1px</span>));</div><div class="line">    <span class="attribute">background-size</span>: cover;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>使用<code>*</code>通配符简单粗暴干掉浏览器默认样式，body设置100%，这里使用了<code>vw</code>和<code>vh</code>单位，表示将视口的等分成100份，<code>100vw</code>就是100份宽就是100%的宽，<code>vh</code>同理。</p>
+<p>重点来了，使用css声明了<code>--x</code>、<code>--y</code>两个变量，然后在<code>div</code>样式里裁剪时使用<code>clip-path: circle(100px at calc(var(--x) * 1px ) calc(var(--y) * 1px))</code>,我们使用<code>clip-path</code>裁剪了一个圆，它的语法如下<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">clip-path</span>: <span class="selector-tag">circle</span>(半径 <span class="selector-tag">at</span> 圆心<span class="selector-tag">X</span>轴坐标 圆心<span class="selector-tag">Y</span>轴坐标 )</div></pre></td></tr></table></figure></p>
+<p>更多关于<code>clip-path</code>的知识请戳👇<a href="https://www.w3cplus.com/css3/using-making-sense-of-clip-path.html" target="_blank" rel="external">这里</a></p>
+<p>此时，页面上显示了一个这样的圆</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/3/1/161e04ad4383e7f1?w=632&amp;h=439&amp;f=png&amp;s=17568" alt="image.png"></p>
+<p>最后一步，我们添加鼠标跟随事件，并更改<code>--x</code>和 <code>--y</code>的值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.addEventListener(<span class="string">'mouseover'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">  <span class="built_in">document</span>.documentElement.style.setProperty(<span class="string">'--x'</span>, e.clientX)</div><div class="line">  <span class="built_in">document</span>.documentElement.style.setProperty(<span class="string">'--y'</span>, e.clientY)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>此时，我们使用css变量完成了一个简单的效果，css变量还有更多的使用场景，请尽情的发挥吧。</p>
+<p>详细代码，请移驾<a href="https://github.com/Ortonzhang/simple-code/tree/master/css/css-var" target="_blank" rel="external">github</a></p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>1、可以嵌套使用<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-pseudo">:root</span>&#123;</div><div class="line">    <span class="attribute">--green</span>: green;</div><div class="line">    <span class="attribute">--bgcolor</span>: <span class="built_in">var</span>(--green);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>2、变量的不合法<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">div</span> &#123;</div><div class="line">  <span class="attribute">--color</span>: <span class="number">10px</span>;</div><div class="line">  <span class="attribute">background-color</span>: yellow;</div><div class="line">  <span class="attribute">background-color</span>: <span class="built_in">var</span>(--color, green);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>此时div的背景色是什么呢？<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">A</span> <span class="selector-tag">rgba</span>(0,0,0,0)  <span class="selector-tag">B</span> 10<span class="selector-tag">px</span>  <span class="selector-tag">C</span> <span class="selector-tag">yellow</span>  <span class="selector-tag">D</span> <span class="selector-tag">green</span></div></pre></td></tr></table></figure></p>
+<p>答案是 A </p>
+<p>简单来说是变量声明的时候不是合法的，背景色显然不能是<code>10px</code>，所以浏览器就会使用默认值，这个默认值并不是使用变量的默认值，是浏览器自己的默认值<br><code>background-color: var(--color, green)</code>就会变成<code>background-color: rgba(0,0,0,0)</code></p>
+
+      
+    </div>
+    
+    
+    
+    
+      <div>
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+  <p><span>本文作者:</span><a href="/" title="访问 Orton Zhang 的个人博客">Orton Zhang</a></p>
+  <p><span>本文链接:</span><a href="/2018/11/27/css-variables/" title="css自定义属性和聚光灯效果">http://ortonzhang.com/2018/11/27/css-variables/</a>
+  </p>
+  <p><span>版权声明:</span>本博客所有文章除特别声明外，均采用<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" title="CC BY-NC-SA 3.0 CN">CC BY-NC-SA 3.0 CN</a> 许可协议。转载请注明出处！</p>  
+</div>
+
+      </div>
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/css/" rel="tag"><i class="fa fa-tag"></i> css</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/11/wechat-mini-program/" rel="next" title="初探微信小程序">
+                <i class="fa fa-chevron-left"></i> 初探微信小程序
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/27/mini-program-picker/" rel="prev" title="小程序：动态数据实现三级联动选择器">
+                小程序：动态数据实现三级联动选择器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="Orton Zhang" />
+            
+              <p class="site-author-name" itemprop="name">Orton Zhang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Ortonzhang" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://weibo.com/5189572269/profile?rightmod=1&wvr=6&mod=personinfo" target="_blank" title="weibo">
+                    
+                      <i class="fa fa-fw fa-globe"></i>weibo</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#出场曲"><span class="nav-number">1.</span> <span class="nav-text">出场曲</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">2.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#兼容性"><span class="nav-number">3.</span> <span class="nav-text">兼容性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">4.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#全局变量与变量覆盖"><span class="nav-number">5.</span> <span class="nav-text">全局变量与变量覆盖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量的缺省值"><span class="nav-number">6.</span> <span class="nav-text">变量的缺省值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参与计算"><span class="nav-number">7.</span> <span class="nav-text">参与计算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#js获取与赋值"><span class="nav-number">8.</span> <span class="nav-text">js获取与赋值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单应用"><span class="nav-number">9.</span> <span class="nav-text">简单应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">10.</span> <span class="nav-text">小结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Orton Zhang</span>
+
+  
+</div>
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共13.0k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
