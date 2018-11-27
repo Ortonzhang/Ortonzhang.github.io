@@ -88,21 +88,20 @@
 
 
 
-<meta name="description" content="怎么实现这样一个圆环进度条的效果呢，可以使用canvas、svg、GIF等等方式，今天我们来说下使用css3怎么来实现。">
+<meta name="description" content="![环形进度条.gif](https://user-gold-cdn.xitu.io/2018/2/8/1617609ec683e32a?w=315&amp;amp;h=300&amp;amp;f=gif&amp;amp;s=56956) !--(http://upload-images.jianshu.io/upload_images/4060631-d6b24e36947c9cc6.gif?imageMogr2/au">
 <meta name="keywords" content="css">
 <meta property="og:type" content="article">
 <meta property="og:title" content="clip实现圆环进度条">
 <meta property="og:url" content="http://ortonzhang.com/2018/02/11/clip-progress-bar/index.html">
 <meta property="og:site_name" content="Orton Blog">
-<meta property="og:description" content="怎么实现这样一个圆环进度条的效果呢，可以使用canvas、svg、GIF等等方式，今天我们来说下使用css3怎么来实现。">
+<meta property="og:description" content="![环形进度条.gif](https://user-gold-cdn.xitu.io/2018/2/8/1617609ec683e32a?w=315&amp;amp;h=300&amp;amp;f=gif&amp;amp;s=56956) !--(http://upload-images.jianshu.io/upload_images/4060631-d6b24e36947c9cc6.gif?imageMogr2/au">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/2/8/1617609ec683e32a?w=315&h=300&f=gif&s=56956">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4060631-19b6a1622bf7721f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-11-27T12:49:42.901Z">
+<meta property="og:updated_time" content="2018-11-27T12:54:03.262Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="clip实现圆环进度条">
-<meta name="twitter:description" content="怎么实现这样一个圆环进度条的效果呢，可以使用canvas、svg、GIF等等方式，今天我们来说下使用css3怎么来实现。">
-<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/2/8/1617609ec683e32a?w=315&h=300&f=gif&s=56956">
+<meta name="twitter:description" content="![环形进度条.gif](https://user-gold-cdn.xitu.io/2018/2/8/1617609ec683e32a?w=315&amp;amp;h=300&amp;amp;f=gif&amp;amp;s=56956) !--(http://upload-images.jianshu.io/upload_images/4060631-d6b24e36947c9cc6.gif?imageMogr2/au">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/4060631-19b6a1622bf7721f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -249,7 +248,8 @@
 
   
 </nav>
-
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
 
 
  </div>
@@ -346,10 +346,17 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
 
           
             <div class="post-wordcount">
               
+                
+                  <span class="post-meta-divider">|</span>
                 
                 <span class="post-meta-item-icon">
                   <i class="fa fa-file-word-o"></i>
@@ -358,24 +365,12 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  842
+                  883
                 </span>
               
 
               
-                <span class="post-meta-divider">|</span>
-              
 
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  4
-                </span>
               
             </div>
           
@@ -395,7 +390,10 @@
       
 
       
-        <p><img src="https://user-gold-cdn.xitu.io/2018/2/8/1617609ec683e32a?w=315&amp;h=300&amp;f=gif&amp;s=56956" alt="环形进度条.gif"></p>
+        <p>![环形进度条.gif]<br>(<a href="https://user-gold-cdn.xitu.io/2018/2/8/1617609ec683e32a?w=315&amp;h=300&amp;f=gif&amp;s=56956" target="_blank" rel="external">https://user-gold-cdn.xitu.io/2018/2/8/1617609ec683e32a?w=315&amp;h=300&amp;f=gif&amp;s=56956</a>)</p>
+<a href="!--(http://upload-images.jianshu.io/upload_images/4060631-d6b24e36947c9cc6.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+--">!--(http://upload-images.jianshu.io/upload_images/4060631-d6b24e36947c9cc6.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+--</a>
 <p>怎么实现这样一个圆环进度条的效果呢，可以使用canvas、svg、GIF等等方式，今天我们来说下使用css3怎么来实现。</p>
 <a id="more"></a>
 <h3 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h3><p>圆环很简单，一行css<code>border-radius:50%</code>即可实现，而且没有兼容性问题，什么，你说IE，让它滚…</p>
@@ -424,8 +422,6 @@
       <div>
         
 <div class="my_post_copyright">
-  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
-
   <!-- JS库 sweetalert 可修改路径 -->
   <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
   <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
@@ -669,7 +665,19 @@
   <span class="post-count">博客全站共13.0k字</span>
 </div>
 
+<span id="busuanzi_container_site_uv">
+  访问次数:<span id="busuanzi_value_site_uv"></span>
+</span>
+
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
 
 
 
