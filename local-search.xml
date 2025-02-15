@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>pnpm管理node版本</title>
+    <link href="/2025/02/14/pnpm/"/>
+    <url>/2025/02/14/pnpm/</url>
+    
+    <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>传统的 Node.js 版本管理工具（如 nvm）需要手动切换版本，而 pnpm 提供了一种更轻量级的方式——通过 pnpm env 命令来管理 Node.js 版本。更重要的是，你可以完全绕过系统中已有的 Node.js，让 pnpm 成为唯一的 Node.js 管理工具。</p><p>本文将介绍如何在本地完全没有安装 Node.js 的情况下 ，使用 pnpm 管理 Node.js 版本。</p><h2 id="工具介绍"><a href="#工具介绍" class="headerlink" title="工具介绍"></a>工具介绍</h2><h3 id="pnpm"><a href="#pnpm" class="headerlink" title="pnpm"></a>pnpm</h3><p><a href="https://pnpm.io/">pnpm</a> 是一个快速、高效的 JavaScript 包管理工具，旨在解决传统包管理工具（如 npm 和 yarn）中的磁盘空间浪费问题。从 v7 开始，<code>pnpm</code> 引入了 <code>pnpm env</code> 命令，允许用户轻松管理 Node.js 的版本。</p><h3 id="pnpm-env"><a href="#pnpm-env" class="headerlink" title="pnpm env"></a>pnpm env</h3><p><code>pnpm env</code> 是 <code>pnpm</code> 提供的一个子命令，用于管理 Node.js 环境。它可以安装、卸载和切换不同版本的 Node.js，类似于 <code>nvm</code> 的功能。</p><h2 id="安装与配置"><a href="#安装与配置" class="headerlink" title="安装与配置"></a>安装与配置</h2><blockquote><p>curl和wget二选一</p></blockquote><h3 id="curl"><a href="#curl" class="headerlink" title="curl"></a>curl</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">curl -fsSL https://get.pnpm.io/install.sh | sh -<br><br></code></pre></td></tr></table></figure><h3 id="wget"><a href="#wget" class="headerlink" title="wget"></a>wget</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">wget -qO- https://get.pnpm.io/install.sh | sh -<br></code></pre></td></tr></table></figure><h3 id="安装-node"><a href="#安装-node" class="headerlink" title="安装 node"></a>安装 node</h3><h3 id="指定版本"><a href="#指定版本" class="headerlink" title="指定版本"></a>指定版本</h3><p>使用 pnpm env use 安装并切换到指定版本的 Node.js。例如，安装 Node.js v18：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pnpm <span class="hljs-built_in">env</span> use --global 18<br></code></pre></td></tr></table></figure><p>安装完成后，再次运行以下命令验证：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">node -v<br></code></pre></td></tr></table></figure><p>你应该会看到类似以下的输出：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">v18.x.x<br></code></pre></td></tr></table></figure><h3 id="使用lts版本"><a href="#使用lts版本" class="headerlink" title="使用lts版本"></a>使用lts版本</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pnpm <span class="hljs-built_in">env</span> use --global lts<br></code></pre></td></tr></table></figure><h2 id="常见命令"><a href="#常见命令" class="headerlink" title="常见命令"></a>常见命令</h2><h3 id="设置版本"><a href="#设置版本" class="headerlink" title="设置版本"></a>设置版本</h3><p>如果你想设置某个版本为默认版本，可以使用以下命令：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pnpm <span class="hljs-built_in">env</span> use --global &lt;version&gt;<br></code></pre></td></tr></table></figure><p>例如:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pnpm <span class="hljs-built_in">env</span> use --global 16<br></code></pre></td></tr></table></figure><h3 id="删除版本"><a href="#删除版本" class="headerlink" title="删除版本"></a>删除版本</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pnpm <span class="hljs-built_in">env</span> remove --global &lt;version&gt;<br></code></pre></td></tr></table></figure><p>例如:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pnpm <span class="hljs-built_in">env</span> remove --global 16<br></code></pre></td></tr></table></figure><h3 id="查看本地所有版本"><a href="#查看本地所有版本" class="headerlink" title="查看本地所有版本"></a>查看本地所有版本</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pnpm <span class="hljs-built_in">env</span> list<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Node</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>批量删除分支</title>
     <link href="/2025/02/13/gitCmdFn/"/>
     <url>/2025/02/13/gitCmdFn/</url>
